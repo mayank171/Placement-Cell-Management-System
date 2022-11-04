@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% block content %} 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} {% endblock %}- FlaskApp</title>
+    
+  
+  <style>
+
+        .container{
+                display: flex;
+	        align-items: center;
+		justify-content:center;
+		margin-top:5%;
+        }
+	.card {
+		width: 400px;
+		display: inline-flex;
+	        align-items: center;
+		margin: 1rem;
+		border-radius: 4px;
+		box-shadow: 0 -1px 1px 0 rgba(0,0,0,.05), 0 1px 2px 0 rgba(0,0,0,.2);
+		
+		&-img {
+			position: relative;
+			height: 224px;
+			width: 100%;
+			background-color: #fff;
+			transition: opacity .2s ease;
+			background-position: center center;
+			background-repeat: no-repeat;
+			background-size: cover;
+               }		
+		
+    </style>
+   
+   
+ </head>
+  
+<body>
+
+   <div class="container">
+     <div class="card">
+	  <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+	    <img src="https://img.icons8.com/stickers/344/fill-in-form.png" class="img-fluid"/>
+	    <a href="#!">
+	      <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+	    </a>
+	  </div>
+	  <div class="card-body">
+	    <h2 class="card-title">Fill Details</h2>
+	    <p class="card-text">You can fill your basic details here.</p>
+	    
+	    <a href="/create/" class="btn btn-primary">Button</a>
+	  </div>
+     </div>
+     
+     <div class="card">
+	  <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+	    <img src="https://img.icons8.com/cute-clipart/344/day-view.png" class="img-fluid"/>
+	    <a href="#!">
+	      <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+	    </a>
+	  </div>
+	  <div class="card-body">
+	    <h2 class="card-title">View Profile</h2>
+	    <p class="card-text">You can view the details you entered here.</p>
+	    <a href="/view/" class="btn btn-primary">Button</a>
+	  </div>
+     </div>
+    
+    <div class="card">
+	  <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+	    <img src="https://img.icons8.com/fluency/344/find-matching-job.png" class="img-fluid"/>
+	    <a href="#!">
+	      <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+	    </a>
+	  </div>
+	  <div class="card-body">
+	    <h2 class="card-title">View Jobs</h2>
+	    <p class="card-text">You can view the upcoming Jobs here.</p>
+	    <a href="#!" class="btn btn-primary">Button</a>
+	  </div>
+     </div>
+     
+
+     
+  </div>
+
+</body>
+</html>
+
+{% endblock %}
+

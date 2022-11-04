@@ -1,0 +1,142 @@
+{% extends 'base.html' %}
+
+{% block content %}
+     <div class="form-body">
+        <div class="row">
+            <div class="form-holder">
+                <div class="form-content">
+                    <div class="form-items">
+                        <form class="was-validated" on method="post">
+                            <h3 class="header">Add your Details</h3>
+                            <div class="col-md-12">
+                               <input class="form-control" type="text" name="regno" placeholder="Registration Number" minlength='9' maxlength='9' required>
+                               <div class="valid-feedback">Registration Number field is valid!</div>
+                               <div class="invalid-feedback">Registration Number field cannot be blank!</div>
+                            </div>
+
+                            <div class="col-md-12">
+                               <input class="form-control" type="text" name="fname" placeholder="First Name" required>
+                               <div class="valid-feedback">Firstname field is valid!</div>
+                               <div class="invalid-feedback">Firstname field cannot be blank!</div>
+                            </div>
+                            
+                            <div class="col-md-12">
+                               <input class="form-control" type="text" name="lname" placeholder="Last Name" required>
+                               <div class="valid-feedback">Lastname field is valid!</div>
+                               <div class="invalid-feedback">Lastname field cannot be blank!</div>
+                            </div>
+
+
+                            
+
+                            <div>
+                              <label for="bdaymonth">Enter Date Of Birth </label>
+                              <input type="date" id="year" name="year" min="1996-01-01" max="2002-12-31" required>	
+		      	    </div>
+                            
+                            <div class="col-md-12">
+                                <input class="form-control" type="email" name="email" placeholder="E-mail Address" required>
+                                 <div class="valid-feedback">Email field is valid!</div>
+                                 <div class="invalid-feedback">Email field cannot be blank!</div>
+                            </div>
+                            
+                            <div class="col-md-12">
+                                <input class="form-control" type="tel" name="phone" placeholder="Phone Number" type="tel" pattern="^\d{10}$" required>
+                                 <div class="valid-feedback">Phone Number field is valid!</div>
+                                 <div class="invalid-feedback">Phone Number field cannot be blank!</div>
+                            </div>
+                            
+                            <div class="col-md-12">
+                                <input class="form-control" type="" name="address" placeholder="Address" pattern="([A-Z])\w+" required>
+                             <div class="valid-feedback">Address field is valid!</div>
+                                 <div class="invalid-feedback">Address field cannot be blank!</div>
+                            </div>
+                            
+                            
+                            <div class="col-md-12 mt-3">
+                            <label class="mb-3 mr-1" for="gender">Gender: </label>
+
+                            <input type="radio" class="btn-check" name="gender" id="male" value="M" autocomplete="off" required>
+                            <label class="btn btn-sm btn-outline-secondary" for="male">Male</label>
+
+                            <input type="radio" class="btn-check" name="gender" id="female" value="F" autocomplete="off" required>
+                            <label class="btn btn-sm btn-outline-secondary" for="female">Female</label>
+
+                            <input type="radio" class="btn-check" name="gender" id="secret" value="S" autocomplete="off" required>
+                            <label class="btn btn-sm btn-outline-secondary" for="secret">Secret</label>
+                               <div class="valid-feedback mv-up">You selected a gender!</div>
+                                <div class="invalid-feedback mv-up">Please select a gender!</div>
+                            </div>
+                            
+                            
+                            <div class="col-md-12">
+                                <input class="form-control" type="text" name="course" placeholder="Course" minlength="3" required>
+                                 <div class="valid-feedback">Course field is valid!</div>
+                                 <div class="invalid-feedback">Course field cannot be blank!</div>
+                            </div>
+                            
+                           
+                            
+                            <div class="col-md-12 mt-3">
+                            <label class="mb-3 mr-1" for="type">Type of Course: </label>
+
+                            <input type="radio" class="btn-check" name="type" id="ug" value="UG" autocomplete="off" required>
+                            <label class="btn btn-sm btn-outline-secondary" for="ug">UG</label>
+
+                            <input type="radio" class="btn-check" name="type" id="pg" value="PG" autocomplete="off" required>
+                            <label class="btn btn-sm btn-outline-secondary" for="pg">PG</label>
+
+                               <div class="valid-feedback mv-up">You selected a Type!</div>
+                                <div class="invalid-feedback mv-up">Please select a Type!</div>
+                            </div>
+                            
+                            
+                            <div class="col-md-12">
+                                <input class="form-control" type="number" step="0.01" name="cgpa" placeholder="CGPA" required>
+                                 <div class="valid-feedback">CGPA field is valid!</div>
+                                 <div class="invalid-feedback">CGPA field cannot be blank!</div>
+                            </div>
+                            
+                            
+                            <div class="col-md-12">
+                                <input class="form-control" type="number" name="cursem" placeholder="Current Semester" max="8" required>
+                                 <div class="valid-feedback">Current Semester field is valid!</div>
+                                 <div class="invalid-feedback">Current Semster field cannot be blank!</div>
+                            </div>
+                            
+                            
+                            
+                            <div class="col-md-12">
+                                <input class="form-control" type="text" name="fa" placeholder="Faculty Advisor" minlength="10" required>
+                                 <div class="valid-feedback">FA field is valid!</div>
+                                 <div class="invalid-feedback">FA field cannot be blank!</div>
+                            </div>
+                            
+             
+                           
+
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                          <label class="form-check-label">I confirm that all data are correct</label>
+                         <div class="invalid-feedback">Please confirm that the entered data are all correct!</div>
+                        </div>
+                  
+
+                            <div class="form-button mt-3">
+                                <button id="submit" type="submit" class="btn btn-primary">Register</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+
+
+
+
+
+

@@ -1,0 +1,162 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8">
+  <title>Login</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+ <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+ 
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+ 
+ <style>
+ 
+     *, body {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 400;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+            -moz-osx-font-smoothing: grayscale;
+            font-size:17px;
+        }
+
+        html, body {
+            height: 100%;
+            background-color: ;
+          
+        }
+        
+        .header{
+            font-family: 'Poppins', sans-serif;
+            font-weight: 400;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 0 10px 0;
+        }
+
+
+        .form-holder {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+           
+        }
+
+ 
+     .container2 {
+	    border: 3px solid #fff;
+	    padding: 40px;
+	    display: inline-block;
+	    width: 100%;
+	    min-width: 540px;
+	    -webkit-border-radius: 10px;
+	    -moz-border-radius: 10px;
+	    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px;
+	    border-radius: 10px;
+	    text-align: left;
+	    -webkit-transition: all 0.4s ease;
+	    transition: all 0.4s ease;
+	}
+
+	.form-content h3 {
+	    color: #111;
+	    text-align: left;
+	    font-size: 56px;
+	    font-weight: 600;
+	    margin-bottom: 5px;
+	}
+	
+	.form-control{
+	   height:50px;
+	}
+	
+ </style>
+ 
+ </head>
+
+  <div class="login-box" >
+  
+ <section class="vh-100">
+  <div class="container-fluid h-custom">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-md-9 col-lg-6 col-xl-5">
+        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+          class="img-fluid" alt="Sample image">
+      </div>
+      <div class="container2 col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+        <form class="form-group" action="{{ url_for('login') }}" method="post" class="was-validated" on method="post">
+          <h3 class="header">User Login</h3>
+          <!-- UserName input -->
+          <div class="form-outline mb-4">
+            <input type="text" id="username" class="form-control form-control-lg"
+              placeholder="Enter valid Registration Number" name="username" oninput="this.value = this.value.toUpperCase()" minlength="9" maxlength="9"  required />
+            <div class="valid-feedback">Registration Number field is valid!</div>
+                   <div class="invalid-feedback">Registration Number field cannot be blank!</div>
+            </div>
+
+          <!-- Password input -->
+          <div class="form-outline mb-3">
+            <input type="password" id="password" class="form-control form-control-lg"
+              placeholder="Enter password" name="password" required/>
+            <div class="valid-feedback">Password field is valid!</div>
+                   <div class="invalid-feedback">Password field cannot be blank!</div>
+            </div>
+          
+
+          <div class="d-flex justify-content-between align-items-center">
+            <!-- Checkbox -->
+            <div class="form-check mb-0">
+              <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
+              <label class="form-check-label" for="form2Example3">
+                Remember me
+              </label>
+            </div>
+          </div>
+
+          <div class="text-center text-lg-start mt-4 pt-2">
+            <input type="submit" class="btn btn-primary btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem;" value="Login" class="form-control btn btn-success " name="">
+          </div>
+          
+
+        </form>
+            
+            
+       {% with messages = get_flashed_messages()  %}
+          {% if messages %}
+          {% for message in messages %}
+          
+           <div class="alert alert-success alert-dismissible">
+              <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+              <strong>{{ message }}</strong> 
+           </div>
+         {% endfor %}
+         {% endif %}
+       {% endwith %}
+       
+       
+            <p class="medium fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="{{ url_for('register') }}" class="link-danger">Register</a></p>
+          </div>
+    
+      </div>
+    </div>
+</section>
+ 
+ 
+ 
+ 
+ </body>
+</html>
+
+{% endblock %}
+

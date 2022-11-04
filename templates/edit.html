@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+{% block body %}
+  <div class="row">
+    <div class="col-md-4 offset-md-4">
+      <div class="card card-body">
+        <form action="/update/{{job[0].job_id}}" method="POST">
+          <div class="form-group">
+          <input type="text" class="form-control" name="job_Id" placeholder="Job ID" required>
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" name="Company" placeholder="Company Name" required>
+        </div>
+
+
+        <div class="form-group">
+        <select width=100 style="width: 100px"   name="Position" required>
+            <option value='sde'>Software Developer</option>
+            <option value='software engineer'>Software Engineer</option>
+            <option value='data analyst'>Data Analyst</option>
+            <option value='data engineer'>Data Engineer</option>
+            <option value='data scientist'>Data Scientist</option>
+          </select>
+      </div>
+
+      <div class="form-group">
+        Btech-CS<input type="checkbox" name="Eligibility" value="Btech-CS" >
+          Btech-Mech<input type="checkbox" name="Eligibility" value="Btech-Mech" >
+          Btech-Civil<input type="checkbox" name="Eligibility" value="Btech-Civil" >
+          Btech-ECE<input type="checkbox" name="Eligibility" value="Btech-ECE" >
+          <br>
+          Mtech-CS<input type="checkbox" name="Eligibility" value="Mtech-CS" >
+          MCA<input type="checkbox" name="Eligibility" value="MCA" >
+      </div>
+
+      <div class="form-group">
+        <input type="number" name="CGPA"  placeholder="Enter your CGPA" step="0.01" required>
+          </input>
+      </div>
+
+        <div class="form-group">
+          <input type="text" class="form-control" name="Location" placeholder="Location">
+        </div>
+
+        <div class="form-group">
+            <select width=100 style="width: 100px"   name="type" required>
+              <option value='Fulltime'>Full Time</option>
+              <option value='internship'>Internship</option>
+            </select>
+        </div>
+
+
+
+        <button class="btn btn-primary btn-block">
+          Update
+        </button>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+

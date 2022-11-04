@@ -1,0 +1,203 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8">
+  <title>Register</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+  <!-- Google Fonts -->
+  <link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+ 
+ 
+
+<style>
+ 
+     *, body {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 400;
+            
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+            -moz-osx-font-smoothing: grayscale;
+            font-size:17px;
+        }
+
+        html, body {
+            height: 100%;
+            background-color: ;
+          
+        }
+        
+        .header{
+            font-family: 'Poppins', sans-serif;
+            font-weight: 400;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding:0 0 10px 0;
+           
+        }
+
+
+        .form-holder {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+           
+        }
+
+ 
+     .container2 {
+	    border: 3px solid #fff;
+	    padding: 40px;
+	    display: inline-block;
+	    width: 100%;
+	    min-width: 540px;
+	    -webkit-border-radius: 10px;
+	    -moz-border-radius: 10px;
+	    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px;
+	    border-radius: 10px;
+	    text-align: left;
+	    -webkit-transition: all 0.4s ease;
+	    transition: all 0.4s ease;
+	}
+
+	.form-group h3{
+	    color: #111;
+	    text-align: left;
+	    font-size: 28px;
+	    font-weight: 600;
+	    margin-bottom: 5px;
+	}
+	
+	.input-group{
+	    padding:7px;
+	}
+	
+	.form-control{
+	   height:50px;
+	}
+	
+	
+	
+ </style>
+ 
+ 
+ </head>
+ 
+  
+  
+  
+  
+  
+  
+  
+  
+
+ <section class="vh-100">
+  <div class="container-fluid h-custom">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-md-9 col-lg-6 col-xl-5">
+        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+          class="img-fluid" alt="Sample image">
+      </div>
+      <div class="container2 col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+            <form action="{{ url_for('register') }}" method="post" autocomplete="off" >
+              <!-- 2 column grid layout with text inputs for the first and last names -->
+                <h3 class="header">Register</h3>
+                <div class="form-group">
+                  <div class="cols-sm-10">
+                     <div class="input-group">
+                        <input type="text" class="form-control" name="fullname" id="fullname"  placeholder="Enter your Name" minlength="3" maxlength="20" required/>
+                        </div>
+                     </div>
+                  </div>
+               
+                <div class="form-group">
+                  <div class="cols-sm-10">
+                    <div class="input-group">
+                       <input type="text" class="form-control" name="username" id="username" placeholder="Enter your Registration Number" minlength="9" maxlength="9" oninput="this.value = this.value.toUpperCase()" required>
+                       </div>
+                    </div>
+                  </div>
+                
+              <!-- Email input -->
+              <div class="form-group">
+                <div class="cols-sm-10">
+                   <div class="input-group">
+                       <input type="email" class="form-control" name="email" id="email"  placeholder="Enter your Email" required />
+                       </div>
+                   </div>
+                </div>
+        
+              <!-- Password input -->
+              <div class="form-group">
+                <div class="cols-sm-10">
+                  <div class="input-group">
+                      <input type="password" class="form-control" name="password" placeholder="Password" id="password" required minlength="6" maxlength="12" placeholder="Enter your Password"/>
+                   </div>
+                </div>
+              </div>
+  
+             <div class="form-group ">
+             {% with messages = get_flashed_messages()  %}
+             {% if messages %}
+             {% for message in messages %}
+                <div class="alert alert-success alert-dismissible">
+                  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> 
+                  <strong>{{ message }}</strong> 
+               </div>
+             {% endfor %}
+             {% endif %}
+             {% endwith %}
+             <input type="submit" value="Register" class="form-control btn btn-primary " name="">
+             <p style="padding:5px;">
+             <a href="{{ url_for('login') }}" class="btn btn-dark ">Login</a></p>
+        
+            </div>
+           </form>
+          </div>
+        </div>
+     </div>
+</section>
+<!-- Section: Design Block -->
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>  
+ </body>
+</html>
+{% endblock %}
+
+

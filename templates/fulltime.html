@@ -1,0 +1,48 @@
+
+{% block content %}
+<head>
+<style>
+    nav a {
+        color: #d64161;
+        font-size: 3em;
+        margin-left: 50px;
+        text-decoration: none;
+    }
+
+    .book {
+        padding: 20px;
+        margin: 10px;
+        background-color: #f7f4f4;
+    }
+
+    .review {
+            margin-left: 50px;
+            font-size: 20px;
+    }
+
+</style>
+</head>
+<body>
+    <h1>{% block title %} Add Job Details {% endblock %}</h1>
+    <form method="post" >
+      {{id}}
+        <p>
+            <label for="title">Bond:</label>
+            <input type="number" name="bond" placeholder="Bond in years" required>
+            </input>
+        </p>
+
+        <p>
+            <label for="Company">Package:</label>
+            <input type="number" name="package" placeholder="Package per Annum" required>
+            </input>
+        </p>
+
+
+        <p>
+            <button type="submit">Submit</button>
+        </p>
+    </form>
+    </body>
+{% endblock %}
+

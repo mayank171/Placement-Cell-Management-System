@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{% block title %} Students {% endblock %}</h1>
+<table class="table table-striped table-bordered  table-hover">
+  <thead>
+    <tr>
+      <th scope="col" class="thead-dark">#</th>
+      <th scope="col" class="thead-dark">Reg Number</th>
+      <th scope="col" class="thead-dark">First-Name</th>
+      <th scope="col" class="thead-dark">Last-Name</th>
+      <th scope="col" class="thead-dark">Date Of Birth</th>
+      <th scope="col" class="thead-dark">Email</th>
+      <th scope="col" class="thead-dark">Phone</th>
+      <th scope="col" class="thead-dark">Address</th>
+      <th scope="col" class="thead-dark">Gender</th>
+      <th scope="col" class="thead-dark">Type</th>
+      <th scope="col" class="thead-dark">CGPA</th>
+      <th scope="col" class="thead-dark">Faculty Advisor</th>
+      <th scope="col" class="thead-dark">Date Added</th>
+    </tr>
+  </thead>
+    
+    {% for s in students %}
+  
+    <tbody>
+      <tr>
+        <th scope="row">{{students.index(s)+1}}</th>
+        <td>{{ s[0] }}</td>
+        <td>{{ s[1] }}</td>
+        <td>{{ s[2] }}</td>
+        <td>{{ s[3] }}</td>
+        <td>{{ s[4] }}</td>
+        <td>{{ s[5] }}</td>
+        <td>{{ s[6] }}</td>
+        <td>{{ s[7] }}</td>
+        <td>{{ s[8] }}</td>
+        <td>{{ s[9] }}</td>
+        <td>{{ s[11] }}</td>
+        <td>{{ s[12] }}</td>
+        
+        <td><a href="/my-link?{{ s[0] }}" ><button type="button" class="btn btn-danger" ">Delete</button></a></td>
+        
+      </tr>
+    </tbody>
+    {% endfor %}
+    
+</table>
+
+
+<h2> UG </h2>
+<table class="table  table-striped table-bordered table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Reg Number</th>
+      <th scope="col">Branch</th>
+      <th scope="col">Current Semester</th>
+      <th scope="col">Date Added</th>
+    </tr>
+  </thead>
+    
+    {% for u in ugs %}
+  
+    <tbody>
+      <tr>
+        <th scope="row">{{ugs.index(u)+1}}</th>
+        <td>{{ u[0] }}</td>
+        <td>{{ u[1] }}</td>
+        <td>{{ u[2] }}</td>
+        <td>{{ u[3] }}</td>     
+      </tr>
+    </tbody>
+    {% endfor %}
+    
+</table>
+
+
+<h2> PG </h2>
+<table class="table table-striped table-bordered  table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Reg Number</th>
+      <th scope="col">Branch</th>
+      <th scope="col">Current Semester</th>
+      <th scope="col">Date Added</th>
+    </tr>
+  </thead>
+    
+    {% for p in pgs %}
+  
+    <tbody>
+      <tr>
+        <th scope="row">{{pgs.index(p)+1}}</th>
+        <td>{{ p[0] }}</td>
+        <td>{{ p[1] }}</td>
+        <td>{{ p[2] }}</td>
+        <td>{{ p[3] }}</td>     
+      </tr>
+    </tbody>
+    {% endfor %}
+    
+</table>
+
+<a link href="/adminhome"><button type="button" class="back btn btn-dark">Back to Home</button></a>
+
+
+{% endblock %}
+
+

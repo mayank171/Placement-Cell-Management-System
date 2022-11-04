@@ -1,0 +1,108 @@
+{% extends "layout.html" %}
+{% block body %}
+ <div class="row"><h3>Jobs</h3></div>
+  <div class="row">
+    <div class="col-md-4">
+      {% with messages = get_flashed_messages()  %}
+      {% if messages %}
+      {% for message in messages %}
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      {% endfor %}
+      {% endif %}
+      {% endwith %}
+      <div class="card card-body">
+        <form action="{{url_for('add_job')}}" method="POST">
+            <div class="form-group">
+            <input type="text" class="form-control" name="job_Id" placeholder="Job ID" required>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" name="Company" placeholder="Company Name" required>
+          </div>
+
+
+          <div class="form-group">
+          <select width=100 style="width: 100px"   name="Position" required>
+              <option value='sde'>Software Developer</option>
+              <option value='software engineer'>Software Engineer</option>
+              <option value='data analyst'>Data Analyst</option>
+              <option value='data engineer'>Data Engineer</option>
+              <option value='data scientist'>Data Scientist</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+          Btech-CS<input type="checkbox" name="Eligibility" value="Btech-CS" >
+            Btech-Mech<input type="checkbox" name="Eligibility" value="Btech-Mech" >
+            <br>
+            Btech-Civil<input type="checkbox" name="Eligibility" value="Btech-Civil" >
+            Btech-ECE<input type="checkbox" name="Eligibility" value="Btech-ECE" >
+            <br>
+            Mtech-CS<input type="checkbox" name="Eligibility" value="Mtech-CS" >
+            MCA<input type="checkbox" name="Eligibility" value="MCA" >
+        </div>
+
+        <div class="form-group">
+          <input type="number" name="CGPA"  placeholder="Enter your CGPA" step="0.01" required>
+            </input>
+        </div>
+
+          <div class="form-group">
+            <input type="text" class="form-control" name="Location" placeholder="Location">
+          </div>
+
+          <div class="form-group">
+              <select width=100 style="width: 100px"   name="type" required>
+                <option value='Fulltime'>Full Time</option>
+                <option value='internship'>Internship</option>
+              </select>
+          </div>
+
+
+
+          <button class="btn btn-primary btn-block">
+            Save
+          </button>
+        </form>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <table id="example" class="table table-striped table-bordered" style="width:100%">
+        <thead>
+          <tr>
+            <td>Job ID</td>
+            <td>Company Name</td>
+            <td>Position</td>
+            <td>Eligible Courses</td>
+            <td>CGPA</td>
+            <td>Location</td>
+            <td>Type</td>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in list_users %}
+          <tr>
+            <td>{{row[0]}}</td>
+            <td>{{row[1]}}</td>
+            <td>{{row[2]}}</td>
+            <td>{{row[6]}}</td>
+            <td>{{row[3]}}</td>
+            <td>{{row[4]}}</td>
+            <td>{{row[5]}}</td>
+            <td width="130">
+              <a href="/delete/{{row[0]}}" class="btn btn-danger btn-delete btn-sm">delete</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+

@@ -1,0 +1,182 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+ 
+	<style>
+		body{
+		    margin-top:20px;
+		    font-family: 'Poppins', sans-serif;
+		    font-weight: 400;
+		}
+		.section {
+		    padding: 100px 0;
+		    position: relative;
+		}
+		.gray-bg {
+		    background-color: #f5f5f5;
+		}
+		img {
+		    max-width: 100%;
+		}
+		img {
+		    vertical-align: middle;
+		    border-style: none;
+		}
+		
+		.about-text h3 {
+		  font-size: 45px;
+		  font-weight: 700;
+		  margin: 0 0 6px;
+		}
+		@media (max-width: 767px) {
+		  .about-text h3 {
+		    font-size: 35px;
+		  }
+		}
+		.about-text h6 {
+		  font-weight: 600;
+		  margin-bottom: 15px;
+		}
+		@media (max-width: 767px) {
+		  .about-text h6 {
+		    font-size: 18px;
+		  }
+		}
+
+		.about-list {
+		  font-size:30px;
+		  padding-top: 10px;
+		}
+		.about-list .media {
+		  font-size:25px;
+		  padding: 5px 0;
+		}
+		.about-list label {
+		  color: #20247b;
+		  font-weight: 600;
+		  width: 50%;
+		  margin: 0;
+		  position: relative;
+		}
+		.about-list p {
+		  margin: 0;
+		  font-size: 15px;
+		}
+
+		@media (max-width: 991px) {
+		  .about-avatar {
+		    margin-top: 30px;
+		  }
+		}
+		
+		.media p{
+		   font-size:18px;
+		}
+
+	</style>
+
+
+	<section class="section about-section gray-bg" id="about">
+		    <div class="container">
+		        <div class="row align-items-center flex-row-reverse">
+		            <div class="col-lg-6">
+		                <div class="about-text go-to">
+		                    <h3 class="dark-color">{{details[0][1]}} {{details[0][2]}}</h3>
+		                   
+		                    <div class="row about-list">
+		                        <div class="col-md-6">
+		                          {% if details[0][8]=='UG' %}
+		                            <div class="media">
+		                                <label>Course</label>
+		                                <p>{{ugdetails[0][1]}}</p>
+		                            </div>
+		                          {% else %}
+		                            <div class="media">
+		                                <label>Course</label>
+		                                <p>{{pgdetails[0][1]}}</p>
+		                            </div>
+		                          {% endif %}   
+		                            <div class="media">
+		                                <label>Birthday</label>
+		                                <p>{{details[0][3]}}</p>
+		                            </div>
+		                            <div class="media">
+		                                <label>Gender</label>
+		                                <p>{{details[0][7]}}</p>
+		                            </div>
+		                            <div class="media">
+		                                <label>Address</label>
+		                                <p>{{details[0][6]}}</p>
+		                            </div>
+		                            <div class="media">
+		                                <label>FA</label>
+		                                <p>{{details[0][11]}}</p>
+		                            </div>
+		                        </div>
+		                        <div class="col-md-6">
+		                            <div class="media">
+		                                <label>E-mail</label>
+		                                <p>{{details[0][4]}}</p>
+		                            </div>
+		                            <div class="media">
+		                                <label>Phone</label>
+		                                <p>{{details[0][5]}}</p>
+		                            </div>
+		                            <div class="media">
+		                                <label>Type</label>
+		                                <p>{{details[0][8]}}</p>
+		                            </div>
+		                            <div class="media">
+		                                <label>CGPA</label>
+		                                <p>{{details[0][9]}}</p>
+		                            </div>
+		                            {% if details[0][8]=='UG' %}
+		                              <div class="media">
+		                                <label>Semester</label>
+		                                <p>{{ugdetails[0][2]}}</p>
+		                              </div>
+		                            {% else %}
+		                              <div class="media">
+		                                <label>Course</label>
+		                                <p>{{pgdetails[0][2]}}</p>
+		                              </div>
+		                            {% endif %} 
+		                        </div>
+		                    </div>
+		                </div>
+		            </div>
+		            
+		            {% if details[0][7]=='F' %}
+		              <div class="col-lg-6">
+		                  <div class="about-avatar">
+		                    <img src="https://www.bootdey.com/img/Content/avatar/avatar8.png" title="" alt="">
+		                  </div>
+		              </div>
+		            {% else %}
+		              <div class="col-lg-6">
+		                  <div class="about-avatar">
+		                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" title="" alt="">
+		                  </div>
+		              </div>
+		            {% endif %}  
+		        </div>
+		        
+		        <a class="btn btn-primary" href="/edit/">Edit</a>
+		        {% with messages = get_flashed_messages()  %}
+			  {% if messages %}
+			  {% for message in messages %}
+			   <div class="alert alert-success alert-dismissible">
+				  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> 
+				  <strong>{{ message }}</strong> 
+			       </div>
+			 {% endfor %}
+			 {% endif %}
+                       {% endwith %}
+       
+		    </div>
+		</section>
+{% endblock %}
