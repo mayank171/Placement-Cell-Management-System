@@ -1,4 +1,4 @@
-
+{% extends 'job.html' %}
 {% block content %}
 <head>
 <style>
@@ -23,32 +23,47 @@
 </style>
 </head>
 <body>
-    <h1>{% block title %} Add Job Details {% endblock %}</h1>
-    <form method="post" >
-        <p>
-            <label for="title">Duration:</label>
-            <input type="number" name="duration" placeholder="duration in months" required>
-            </input>
-        </p>
+<div class="form-body">
+ <div class="row">
+   <div class="form-holder">
+     <div class="form-content">
+       <div class="form-items">
+          <form method="POST" class="was-validated" on method="post">
+            <h3 class="header">Add Internship Details</h3>     
+            {{id}}
+             <div class="col-md-12">
+               <input type="number" class="form-content" name="duration" min="2" max="6" placeholder="Enter Duration in Month" required>
+                <div class="valid-feedback">Duration field is valid!</div>
+                <div class="invalid-feedback">Duration field cannot be blank!</div>
+            </div>
+
+            <div class="col-md-12 mt-3">
+                    <label class="mb-3 mr-1" for="type">PPO? </label>
+                    <input type="radio" class="btn-check" name="ppo" id="ppo" value="yes" autocomplete="off" required>
+                    <label class="btn btn-sm btn-outline-secondary" for="ppo">Yes</label>
+
+                    <input type="radio" class="btn-check" name="ppo" id="ppo" value="no" autocomplete="off" required>
+                    <label class="btn btn-sm btn-outline-secondary" for="ppo">No</label>
+
+                    <div class="valid-feedback mv-up">You selected a Type!</div>
+                    <div class="invalid-feedback mv-up">Please select a Type!</div>
+             </div>
+
+             <div class="col-md-12">
+               <input type="number" class="form-content" name="salary" min="15000" max="400000" placeholder="Enter Stipend per Month" required>
+                <div class="valid-feedback">Stipend field is valid!</div>
+                <div class="invalid-feedback">Stipend field cannot be blank!</div>
+            </div>
 
         <p>
-            <label for="ppo">PPO:</label>
-            Yes<input type="radio" name="ppo" value="yes" required>
-            No<input type="radio" name="ppo" value="No" required>
-            </input>
-        </p>
-
-        <p>
-            <label for="title">Salary:</label>
-            <input type="number" name="salary" placeholder="slary per months" required>
-            </input>
-        </p>
-
-
-        <p>
-            <button type="submit">Submit</button>
+            <button class="btn btn-primary btn-block" style="text-align:center; margin-left:1%;width:100px; height:40px;" type="submit">Add Job</button>
         </p>
     </form>
-    </body>
+   </div>
+  </div>
+ </div>
+</div>
+</div>
+    
 {% endblock %}
 

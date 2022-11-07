@@ -8,7 +8,7 @@ import re
 import time
 from werkzeug.security import generate_password_hash, check_password_hash
 from common import cache
-
+import pyautogui as pag
 
 app = Flask(__name__)
 app.config["SESSION_PERMANENT"] = False
@@ -29,58 +29,71 @@ DB_HOST="localhost"
 conn = psycopg2.connect(dbname=DB_NAME, user=DB_USER, password=DB_PASS, host=DB_HOST)
 
 
-@app.route('/job')
-def Ind():
-    cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-    s = "SELECT * FROM job;"
-    cur.execute(s) # Execute the SQL
-    list_users = cur.fetchall()
-    return render_template('job.html', list_users = list_users)
+   
+    
+# ...
 
-
-@app.route('/add_job', methods=['POST'])
+@app.route('/add_job', methods=('GET', 'POST'))
 def add_job():
+   # return str(request.form['job_Id'])
     if request.method == 'POST':
-        job_id = request.form['job_Id']
-        company = request.form['Company']
-        position = request.form['Position']
+        
+        session['job_id'] = request.form.get('job_Id',False)
+        if session['job_id']==False:
+           return render_template('job.html')
+        session['company'] = request.form['Company']
+        session['position'] = request.form['Position']
         eligibility = request.form.getlist('Eligibility')
-        streligible=' '.join(eligibility)
-        cgpa = float(request.form['CGPA'])
-        loc = request.form['Location']
-        type = request.form['type']
+        session['streligible']=' '.join(eligibility)
+        session['cgpa'] = float(request.form['CGPA'])
+        session['loc'] = request.form['Location']
+        session['type'] = request.form['type']
         cur = conn.cursor()
+        #return str(request.form['job_Id'])
+        
         try:
             cur.execute('INSERT INTO job (job_id, company, position, eligibility, cgpa, loc, type)'
                         'VALUES (%s, %s, %s, %s, %s, %s, %s)',
-                        (job_id, company, position, streligible, cgpa, loc, type))
+                        (session['job_id'], session['company'], session['position'], session['streligible'], session['cgpa'], session['loc'], session['type']))
         except:
             flash("Job Id alreay exists")
-            return redirect(url_for('Ind'))
+            return redirect(url_for('add_job'))
         conn.commit()
-        cache.set("my_value", job_id)
-        if type == 'Fulltime':
+        cache.set("my_value", session['job_id'])
+        if session['type'] == 'Fulltime':
             return redirect(url_for('fulltime'))
         else :
             return redirect(url_for('intern'))
-        return redirect(url_for('Ind'))
-
-    return render_template('job.html')
+        return render_template('adminhome.html')
+    else:
+        return render_template('job.html') 
+    
 
 @app.route('/fulltime/', methods=('GET', 'POST'))
 def fulltime():
+    print( request.form)
     if request.method == 'POST':
         bond = request.form['bond']
         package = request.form['package']
         cur = conn.cursor()
-        job_id=cache.get("my_value")
+        job_id=session['job_id']
+        
         cache.clear()
         cur.execute('INSERT INTO fulltime (job_id, bond, package)'
                     'VALUES (%s, %s, %s)',
                     (job_id, bond, package))
-        conn.commit()
-        return redirect(url_for('Ind'))
-    return render_template('fulltime.html')
+        conn.commit()    
+        return redirect(url_for('temp'))
+        return render_template('adminhome.html')
+    else:
+        return render_template('fulltime.html')
+
+
+@app.route("/temp")
+def temp():
+    time.sleep(3)
+    return session['streligible']
+
 
 
 @app.route('/intern/', methods=('GET', 'POST'))
@@ -97,8 +110,13 @@ def intern():
                     (job_id, duration, ppo, salary))
         conn.commit()
         cur.close()
+        
         return redirect(url_for('Ind'))
     return render_template('intern.html')
+
+
+
+
 
 
 @app.route('/')
@@ -110,6 +128,8 @@ def home():
         return render_template('home.html', username=session['username'])
     # User is not loggedin redirect to login page
     return redirect(url_for('login'))
+
+
 
 
 
@@ -197,8 +217,7 @@ def delete_student(id):
     cur.execute('DELETE FROM internship WHERE job_id = %s',
                 (id,))
     conn.commit()
-    flash('Job Removed Successfully')
-    return redirect(url_for('Ind'))
+    return redirect(url_for('index'))
 
 
 
@@ -243,6 +262,8 @@ def register():
     return render_template('register.html')
 
 
+
+
 @app.route('/logout')
 def logout():
     # Remove session data, this will log the user out
@@ -254,6 +275,7 @@ def logout():
 
 
 
+
 @app.route('/logoutadmin')
 def logoutAdmin():
     # Remove session data, this will log the user out
@@ -262,6 +284,9 @@ def logoutAdmin():
    session.pop('username', None)
    # Redirect to login page
    return redirect(url_for('loginadmin'))
+
+
+
 
 
 @app.route('/profile')
@@ -286,9 +311,13 @@ def studentHome():
 
 
 
+
+
 @app.route('/adminhome')
 def adminHome():
     return render_template('adminhome.html')
+
+
 
 
 
@@ -305,8 +334,14 @@ def index():
     ugs = cur.fetchall()
     cur.execute('SELECT * FROM PG;')
     pgs = cur.fetchall()
+    cur.execute('SELECT * FROM job;')
+    job = cur.fetchall()
     cur.close()
-    return render_template('index.html', students=students, ugs=ugs, pgs=pgs)
+    
+    return render_template('index.html', students=students, ugs=ugs, pgs=pgs,job=job)
+
+
+
 
 
 # ...
@@ -343,19 +378,13 @@ def create():
         cur = conn.cursor()
         cur.execute("SELECT 1")
 
-        existt=cur.execute('SELECT *  FROM Student WHERE EXISTS(SELECT 1 FROM Student WHERE regNo= (%s))',(session['username'],))
-    
-        if existt==True:
-           flash("Already exist")
-           return render_template('home.html')
-        else :
+        try:
           cur.execute('INSERT INTO Student (regNo, firstName, lastName, dob, email, phoneNo, address, gender, type, cgpa, fa)' 'values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)',
             (regno,
              fname,lname,str(year[0])+'-'+str(year[1])+'-'+str(year[2]),email,
              phone,address,gender,
              typee,cgpa,fa)
             )
-
           if typee=='UG':
            ch1=regno[0]
            ch2=regno[-2]
@@ -407,6 +436,10 @@ def create():
           conn.commit()
           cur.close()
           return render_template('home.html')
+        except:
+            flash("Job Id alreay exists")
+            
+          
     return render_template('create.html')
 
 
@@ -469,6 +502,8 @@ def view():
        cur.execute('SELECT * from PG WHERE regNo = (%s)',(session['username'],))
        pgdetails=cur.fetchall()
        return render_template('view.html',details=details,pgdetails=pgdetails)
+    
+    
     
 
 @app.route('/edit/')
@@ -549,3 +584,9 @@ def update():
        flash("Profile Updated")
        return render_template('view.html',details=details,pgdetails=pgdetails)
     
+    
+    
+    
+@app.route('/view_jobs')
+def view_jobs():
+    return "hello"

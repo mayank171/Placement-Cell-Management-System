@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
-
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+ 
 {% block content %}
      <div class="form-body">
         <div class="row">
@@ -8,6 +11,23 @@
                     <div class="form-items">
                         <form class="was-validated" on method="post">
                             <h3 class="header">Add your Details</h3>
+                            
+                            
+                            <div class="col-md-4">
+			      {% with messages = get_flashed_messages()  %}
+				  {% if messages %}
+				  {% for message in messages %}
+				  
+				   <div class="alert alert-success alert-dismissible">
+				      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+				      <strong>{{ message }}</strong> 
+				   </div>
+				 {% endfor %}
+				 {% endif %}
+			      {% endwith %}
+	      
+	                    </div>
+                            
                             <div class="col-md-12">
                                <input class="form-control" type="text" name="regno" placeholder="Registration Number" minlength='9' maxlength='9' required>
                                <div class="valid-feedback">Registration Number field is valid!</div>
