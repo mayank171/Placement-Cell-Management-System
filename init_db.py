@@ -90,37 +90,6 @@ cur.execute('create table internship( job_Id varchar(50),'
 
 # Insert data into the table
 
-cur.execute('INSERT INTO Student (regNo, firstName, lastName, dob, email, phoneNo, address, gender, type, cgpa, fa)' 'values ( %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)',
-            ('M210678CA',
-             'Mayank','Mewar','2000-12-17','mayank_m210678ca@nitc.ac.in',
-             8940382942,'E-87, Mayur Vihar, Delhi-90','M',
-             'PG',8.8,'Jay Prakash')
-            )
-
-
-cur.execute('INSERT INTO Student (regNo, firstName, lastName, dob, email, phoneNo, address, gender, type, cgpa,  fa)' 'values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)',
-            ('B207598EC',
-             'Ajey','Kumar','1999-07-24','ajey_b207598ec@nit.ac.in',
-             7499492949,'A-78 Aminx Society, Patparganj, Delhi-91','M',
-             'UG',8.3,'Ravi Aggarwal')
-            )
-
-cur.execute('INSERT INTO Student (regNo, firstName, lastName, dob, email, phoneNo, address, gender, type, cgpa,  fa)' 'values ( %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)',
-            ('M227598CS',
-             'Priya','Garg','2001-10-04','priya_m227598cs@nit.ac.in',
-             8894739583,'J-319 Krishna Society, New Friends Colony, Delhi-39','F',
-             'PG',9.25,'Nagarjuna')
-            )
-
-
-cur.execute('INSERT INTO Student (regNo, firstName, lastName, dob, email, phoneNo, address, gender, type, cgpa, fa)' 'values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)',
-            ('B207598ME',
-             'Vijay','Rawat','1999-01-09','vijay_b207598@nitc.ac,in',
-             9405289492,'B-319 Krishna Society, Sagar Vihar, Delhi-54','M',
-             'UG',7.3,'Jasmine Joseph')
-            )
-
-
 
 
 

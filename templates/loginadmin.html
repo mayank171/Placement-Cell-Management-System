@@ -19,20 +19,7 @@
  
  <style>
  
-     *, body {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 400;
-            -webkit-font-smoothing: antialiased;
-            text-rendering: optimizeLegibility;
-            -moz-osx-font-smoothing: grayscale;
-            font-size:17px;
-        }
-
-        html, body {
-            height: 100%;
-            background-color: ;
-          
-        }
+    
         
         .header{
             font-family: 'Poppins', sans-serif;
@@ -70,11 +57,10 @@
 	    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px;
 	    border-radius: 10px;
 	    text-align: left;
-	    -webkit-transition: all 0.4s ease;
-	    transition: all 0.4s ease;
 	}
+	
 
-	.form-content h3 {
+	.form-control h3 {
 	    color: #111;
 	    text-align: left;
 	    font-size: 28px;
@@ -89,7 +75,17 @@
 	
 	
 	.form-control{
-	   height:50px;
+	   height:3em;
+	   font-size:17px;
+	   
+	}
+	
+	.form-check{
+	  font-size:17px;
+	}
+	
+	.alert{
+	   font-size:17px;
 	}
 	
  </style>
@@ -115,7 +111,7 @@
               placeholder="Enter a valid Admin Registration Number" name="username" oninput="this.value = this.value.toUpperCase()" minlength="9" maxlength="9"  required />
             <div class="valid-feedback">Admin Registration Number field is valid!</div>
                    <div class="invalid-feedback">Admin Registration Number field cannot be blank!</div>
-            </div>
+          </div>
 
           <!-- Password input -->
           <div class="form-outline mb-3">
@@ -123,7 +119,7 @@
               placeholder="Enter password" name="password" required/>
             <div class="valid-feedback">Password field is valid!</div>
                    <div class="invalid-feedback">Password field cannot be blank!</div>
-            </div>
+          </div>
           
 
           <div class="d-flex justify-content-between align-items-center">

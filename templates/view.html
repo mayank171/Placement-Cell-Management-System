@@ -7,18 +7,12 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
  
 	<style>
-		body{
-		    margin-top:20px;
-		    font-family: 'Poppins', sans-serif;
-		    font-weight: 400;
-		}
+		
 		.section {
 		    padding: 100px 0;
 		    position: relative;
 		}
-		.gray-bg {
-		    background-color: #f5f5f5;
-		}
+		
 		img {
 		    max-width: 100%;
 		}
@@ -45,11 +39,14 @@
 		  .about-text h6 {
 		    font-size: 18px;
 		  }
+		  
+		  .img1
 		}
 
 		.about-list {
 		  font-size:30px;
 		  padding-top: 10px;
+		  width:150%;
 		}
 		.about-list .media {
 		  font-size:25px;
@@ -69,14 +66,65 @@
 
 		@media (max-width: 991px) {
 		  .about-avatar {
-		    margin-top: 30px;
+		    display:none;
 		  }
+		}
+		
+		.media{
+		   width:20em;
 		}
 		
 		.media p{
 		   font-size:18px;
 		}
+		
+		.edit{
+		   display:flex;
+		   margin-left:auto;
+		   margin-right:auto;
+		   justify-content:center;
+		   align-items:center;
+		   margin-top:10px;
+		   height:50px;
+		   font-size:17px;
+		   transition:1s;
+		   border-radius:30px;
+		  
+		   background-image: linear-gradient(to right,  #4481eb, #04befe);
+                  box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
+		   
+		}
+		
+		.edit:hover{
+		   background-position: 100% 0;
+		   transition: all .4s ease-in-out;
+		}
+		
+		.back{
+		   display:flex;
+		   margin-left:auto;
+		   margin-right:auto;
+		   justify-content:center;
+		   align-items:center;
+		   margin-top:10px;
+		   height:50px;
+		   font-size:17px;
+		   transition:1s;
+		   border-radius:30px;
+		  
+		   background-image:  linear-gradient(to right, #000000, #130F40);
+                  box-shadow: 0 4px 15px 0 rgba(0,0,0);
+                  width:100%;
+		 
+		}
+		
+		.back:hover{
+		   background-position: 100% 0;
+		   transition: all .4s ease-in-out;
+		   
+		}
 
+                
 	</style>
 
 
@@ -114,10 +162,10 @@
 		                            </div>
 		                            <div class="media">
 		                                <label>FA</label>
-		                                <p>{{details[0][11]}}</p>
+		                                <p>{{details[0][10]}}</p>
 		                            </div>
 		                        </div>
-		                        <div class="col-md-6">
+		                        <div class="col2 col-md-6">
 		                            <div class="media">
 		                                <label>E-mail</label>
 		                                <p>{{details[0][4]}}</p>
@@ -147,13 +195,27 @@
 		                            {% endif %} 
 		                        </div>
 		                    </div>
+		                    <a class="edit btn btn-primary" href="/edit/">Edit</a>
+					{% with messages = get_flashed_messages()  %}
+					  {% if messages %}
+					  {% for message in messages %}
+					   <div class="alert alert-success alert-dismissible">
+						  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> 
+						  <strong>{{ message }}</strong> 
+			                 </div>
+			                 {% endfor %}
+					  {% endif %}
+				       {% endwith %}
+				       
+				     <a link href="/home"><button type="button" class="back btn btn-dark">Back to Home</button></a>
+       
 		                </div>
 		            </div>
 		            
 		            {% if details[0][7]=='F' %}
 		              <div class="col-lg-6">
 		                  <div class="about-avatar">
-		                    <img src="https://www.bootdey.com/img/Content/avatar/avatar8.png" title="" alt="">
+		                    <img src="https://static.vecteezy.com/system/resources/thumbnails/001/993/889/small/beautiful-latin-woman-avatar-character-icon-free-vector.jpg" title="" width="400px" height="400px" alt="">
 		                  </div>
 		              </div>
 		            {% else %}
@@ -165,18 +227,7 @@
 		            {% endif %}  
 		        </div>
 		        
-		        <a class="btn btn-primary" href="/edit/">Edit</a>
-		        {% with messages = get_flashed_messages()  %}
-			  {% if messages %}
-			  {% for message in messages %}
-			   <div class="alert alert-success alert-dismissible">
-				  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> 
-				  <strong>{{ message }}</strong> 
-			       </div>
-			 {% endfor %}
-			 {% endif %}
-                       {% endwith %}
-       
+		        
 		    </div>
 		</section>
 {% endblock %}

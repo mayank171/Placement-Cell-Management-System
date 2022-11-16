@@ -10,30 +10,205 @@
   
   <style>
 
-        .container{
-                display: flex;
-	        align-items: center;
-		justify-content:center;
-		margin-top:5%;
-        }
-	.card {
-		width: 400px;
-		display: inline-flex;
-	        align-items: center;
-		margin: 1rem;
-		border-radius: 4px;
-		box-shadow: 0 -1px 1px 0 rgba(0,0,0,.05), 0 1px 2px 0 rgba(0,0,0,.2);
-		
-		&-img {
-			position: relative;
-			height: 224px;
-			width: 100%;
-			background-color: #fff;
-			transition: opacity .2s ease;
-			background-position: center center;
-			background-repeat: no-repeat;
-			background-size: cover;
-               }		
+      
+         .container1{
+                margin-top:10rem;
+                display:flex;
+                justify-content:center;
+                align-items:center;
+                position:relative;
+                flex-wrap:wrap;
+          }
+          
+          
+          .card1{
+                position:relative;
+                max-width:300px;
+                height:215px;
+                background:#fff;
+                margin:30px 30px 30px 0;
+                padding:20px 15px 20px 15px;
+                display:flex;
+                flex-direction:column;
+                box-shadow: 0 5px 20px rgba(0,0,0,0,5);
+                transition:0.3s ease-in-out;
+            
+          }
+          
+          .container1 .card1:hover{
+               height:420px;
+               
+               transform: scale(1.2);
+               display:block;
+          }
+          
+          
+          .container1 .card1 .imgBx{
+                position:relative;
+                padding:20px 15px 20px 15px;
+                width:260px;
+                height:260px;
+                top:-60px;
+                left:20px;
+                z-index:1;
+                box-shadow:0 5px 20px rgba(0,0,0,0.2);
+          }
+          
+          
+          .container1 .card1 .imgBx img{
+                max-width:100%;
+                border-radius:4px;
+                transform: scale(1.2);
+          }
+          
+          
+          .container1 .card1 .content{
+                position:relative;
+                margin-top: -140px;
+                padding: 10px 15px;
+                text-align: center;
+                color:#111;
+                visibility: hidden;
+                opacity:0;
+                transition:0.3s ease-in-out;
+          }
+          
+          .container1 .card1:hover .content{
+                visibility:visible;
+                opacity:1;
+                margin-top:-40px;
+                transition-delay:0.3s;
+                
+          }
+          
+          
+          
+          .card2{
+                position:relative;
+                max-width:300px;
+                height:215px;
+                background:#fff;
+                margin:30px 30px 30px 0;
+                padding:20px 15px 20px 15px;
+                display:flex;
+                flex-direction:column;
+                box-shadow: 0 5px 20px rgba(0,0,0,0,5);
+                transition:0.3s ease-in-out;
+            
+          }
+          
+          .container1 .card2:hover{
+               height:420px;
+               transform: scale(1.2);
+               display:block;
+          }
+          
+          
+          .container1 .card2 .imgBx{
+                position:relative;
+                padding:20px 15px 20px 15px;
+                width:260px;
+                height:260px;
+                top:-60px;
+                left:20px;
+                z-index:1;
+                overflow:none;
+                box-shadow:0 5px 20px rgba(0,0,0,0.2);
+          }
+          
+          
+          .container1 .card2 .imgBx img{
+                max-width:100%;
+                border-radius:4px;
+                transform: scale(1.2);
+          }
+          
+          
+          .container1 .card2 .content{
+                position:relative;
+                margin-top: -140px;
+                padding: 10px 15px;
+                text-align: center;
+                color:#111;
+                visibility: hidden;
+                opacity:0;
+                transition:0.3s ease-in-out;
+          }
+          
+          .container1 .card2:hover .content{
+                visibility:visible;
+                opacity:1;
+                margin-top:-40px;
+                transition-delay:0.3s;
+                
+          }
+          
+           
+          
+          .card3{
+                position:relative;
+                max-width:300px;
+                height:215px;
+                background:#fff;
+                margin:30px 30px 30px 0;
+                padding:20px 15px 20px 15px;
+                display:flex;
+                flex-direction:column;
+                box-shadow: 0 5px 20px rgba(0,0,0,0,5);
+                transition:0.3s ease-in-out;
+            
+          }
+          
+          .container1 .card3:hover{
+               height:420px;
+               transform: scale(1.2);
+           
+          }
+          
+          
+          .container1 .card3 .imgBx{
+                position:relative;
+                width:260px;
+                height:260px;
+                top:-60px;
+                left:20px;
+                z-index:1;
+                box-shadow:0 5px 20px rgba(0,0,0,0.2);
+                overflow:none;
+          }
+          
+          
+          .container1 .card3 .imgBx img{
+                max-width:100%;
+                border-radius:4px;
+                transform: scale(1.2);
+          }
+          
+          
+          .container1 .card3 .content{
+                position:relative;
+                margin-top: -140px;
+                padding: 10px 15px;
+                text-align: center;
+                color:#111;
+                visibility: hidden;
+                opacity:0;
+                transition:0.3s ease-in-out;
+          }
+          
+          .container1 .card3:hover .content{
+                visibility:visible;
+                opacity:1;
+                margin-top:-40px;
+                transition-delay:0.3s;
+                
+          }
+               
+               
+               
+               
+                
+              	
 		
     </style>
    
@@ -42,53 +217,52 @@
   
 <body>
 
-   <div class="container">
-     <div class="card">
-	  <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-	    <img src="https://img.icons8.com/stickers/344/fill-in-form.png" class="img-fluid"/>
-	    <a href="#!">
-	      <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-	    </a>
-	  </div>
-	  <div class="card-body">
-	    <h2 class="card-title">Fill Details</h2>
+  
+  
+  <div class="container1">
+  
+     <div class="card1">
+     
+        <div class="imgBx">
+             <img src="https://img.freepik.com/free-vector/fill-out-concept-illustration_114360-5450.jpg?w=740&t=st=1668258982~exp=1668259582~hmac=aac03dfc8eacc2c04fb6efe04f678cc6991144ac1581cb41863e94b4a0eca862" class="img-fluid"/>
+        </div>
+        <div class="content">
+           <h5 class="card-title">Fill Details</h5>
 	    <p class="card-text">You can fill your basic details here.</p>
 	    
 	    <a href="/create/" class="btn btn-primary">Button</a>
-	  </div>
+        </div>
      </div>
-     
-     <div class="card">
-	  <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-	    <img src="https://img.icons8.com/cute-clipart/344/day-view.png" class="img-fluid"/>
-	    <a href="#!">
-	      <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-	    </a>
-	  </div>
-	  <div class="card-body">
-	    <h2 class="card-title">View Profile</h2>
+   
+     <div class="card2">
+ 
+        <div class="imgBx">
+             <img src="https://img.freepik.com/free-vector/employees-cv-candidates-resume-corporate-workers-students-id-isolate-flat-design-element-job-applications-avatars-personal-information_335657-2605.jpg?w=740&t=st=1668259049~exp=1668259649~hmac=3813f784c2ae6608e53b1185b4199ef4f479cc242c23099cccdada2918db581d" class="img-fluid"/>
+        </div>
+        <div class="content">
+           <h5 class="card-title">View Profile</h5>
 	    <p class="card-text">You can view the details you entered here.</p>
 	    <a href="/view/" class="btn btn-primary">Button</a>
-	  </div>
+        </div>
      </div>
-    
-    <div class="card">
-	  <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-	    <img src="https://img.icons8.com/fluency/344/find-matching-job.png" class="img-fluid"/>
-	    <a href="#!">
-	      <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-	    </a>
-	  </div>
-	  <div class="card-body">
-	    <h2 class="card-title">View Jobs</h2>
+   
+     <div class="card3">
+     
+        <div class="imgBx">
+             <img src="https://img.freepik.com/free-vector/man-having-online-job-interview_52683-43379.jpg?w=740&t=st=1668259580~exp=1668260180~hmac=b500f8d435f89d0b96e1a4a741886f29cb16437b4074bccd41c31bb66f77acc9" class="img-fluid"/>
+        </div>
+        <div class="content">
+            <h5 class="card-title">View Jobs</h5>
 	    <p class="card-text">You can view the upcoming Jobs here.</p>
 	    <a href="/view_jobs" class="btn btn-primary">Button</a>
-	  </div>
+        </div>
      </div>
-     
-
-     
   </div>
+
+  
+  
+  
+  
 
 </body>
 </html>

@@ -1,5 +1,6 @@
 from flask import Flask, request, session, redirect, url_for, render_template, flash
 from flask_session import Session
+from flask_mail import Mail,Message
 import os
 import psycopg2
 import psycopg2 #pip install psycopg2
@@ -9,10 +10,20 @@ import time
 from werkzeug.security import generate_password_hash, check_password_hash
 from common import cache
 import pyautogui as pag
+import smtplib
+
 
 app = Flask(__name__)
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
+app.config['MAIL_SERVER']='smtp.gmail.com'
+app.config['MAIL_PORT']=465
+app.config['MAIL_USERNAME']='mayank17.mewar@gmail.com'
+app.config['MAIL_PASSWORD']='auystnfgmckymlfq'
+app.config['MAIL_USE_TLS']=False
+app.config['MAIL_USE_SSL']=True
+mail=Mail(app)
+
 
 
 app.secret_key = "cairocoders-ednalan"
@@ -35,7 +46,10 @@ conn = psycopg2.connect(dbname=DB_NAME, user=DB_USER, password=DB_PASS, host=DB_
 
 @app.route('/add_job', methods=('GET', 'POST'))
 def add_job():
-   # return str(request.form['job_Id'])
+    #return str(request.form['job_Id'])
+    if session.get("username") == None:
+       return redirect(url_for('loginadmin'))
+       
     if request.method == 'POST':
         
         session['job_id'] = request.form.get('job_Id',False)
@@ -44,7 +58,7 @@ def add_job():
         session['company'] = request.form['Company']
         session['position'] = request.form['Position']
         eligibility = request.form.getlist('Eligibility')
-        session['streligible']=' '.join(eligibility)
+        session['streligible']='#'.join(eligibility)
         session['cgpa'] = float(request.form['CGPA'])
         session['loc'] = request.form['Location']
         session['type'] = request.form['type']
@@ -59,7 +73,6 @@ def add_job():
             flash("Job Id alreay exists")
             return redirect(url_for('add_job'))
         conn.commit()
-        cache.set("my_value", session['job_id'])
         if session['type'] == 'Fulltime':
             return redirect(url_for('fulltime'))
         else :
@@ -67,6 +80,8 @@ def add_job():
         return render_template('adminhome.html')
     else:
         return render_template('job.html') 
+    
+    
     
 
 @app.route('/fulltime/', methods=('GET', 'POST'))
@@ -78,7 +93,6 @@ def fulltime():
         cur = conn.cursor()
         job_id=session['job_id']
         
-        cache.clear()
         cur.execute('INSERT INTO fulltime (job_id, bond, package)'
                     'VALUES (%s, %s, %s)',
                     (job_id, bond, package))
@@ -89,10 +103,55 @@ def fulltime():
         return render_template('fulltime.html')
 
 
+
+
 @app.route("/temp")
 def temp():
-    time.sleep(3)
-    return session['streligible']
+    
+    cur=conn.cursor()
+    courses=str(session['streligible']).split("#")
+    #return courses
+    listemails=[]
+    branch=[]
+    
+    for c in courses:
+       cur.execute("SELECT regNo FROM UG where branch=(%s)",(c,))
+       regNo=cur.fetchall()
+       branch.append(regNo)
+       cur.execute("SELECT regNo FROM PG where branch=(%s)",(c,))
+       regNo=cur.fetchall()
+       branch.append(regNo)
+    #return branch
+    
+    
+    for regNo in branch:
+       for r in regNo:
+          for i in r:
+             if len(str(i))!=0:
+               #return i
+               cur.execute("SELECT * FROM Student where regNo=(%s)",(str(i),))
+               #return str(cur.fetchall())
+               details=cur.fetchall()
+               listemails.append(details[0][4])
+    
+    return redirect(url_for('add_job'))
+    
+    
+    #for m in listemails:
+    #
+    #    msg = Message(
+    #            'Hello',
+    #            sender ='noreply@demo.com',
+    #            recipients = ['mayank17.mewar@gmail.com']
+    #            )
+    #    msg.body = 'Hello Check Website for a new job posting'
+    #    mail.send(msg)
+    #    return 'Sent'
+        #message="you have subscribed!!!"
+        #server=smtplib.SMTP("smtp.mail.yahoo.com",465)
+        #server.starttls()
+        #server.login("mewarmayank17@yahoo.com","just_a_newbie")
+        #server.sendmail("mewarmayank17@yahoo.com",m,message)
 
 
 
@@ -103,18 +162,17 @@ def intern():
         duration = request.form['duration']
         salary = request.form['salary']
         cur = conn.cursor()
-        job_id=cache.get("my_value")
-        cache.clear()
+        job_id=session['job_id']
+        
         cur.execute('INSERT INTO internship (job_id, duration, ppo, salary)'
                     'VALUES (%s, %s, %s, %s)',
                     (job_id, duration, ppo, salary))
         conn.commit()
         cur.close()
-        
-        return redirect(url_for('Ind'))
-    return render_template('intern.html')
-
-
+        return redirect(url_for('temp'))
+        return render_template('adminhome.html')
+    else:
+        return render_template('intern.html')
 
 
 
@@ -135,6 +193,8 @@ def home():
 
 @app.route('/login/', methods=['GET', 'POST'])
 def login():
+    #if session.get("username") == None:
+     #  return "hello"
     cursor = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
 
     # Check if "username" and "password" POST requests exist (user submitted form)
@@ -198,7 +258,7 @@ def loginadmin():
                 return redirect(url_for('adminHome'))
             else:
                 # Account doesnt exist or username/password incorrect
-                flash('1Incorrect username/password')
+                flash('Incorrect username/password')
         else:
             # Account doesnt exist or username/password incorrect
             flash('Incorrect username/password')
@@ -323,6 +383,9 @@ def adminHome():
 
 @app.route('/db/')
 def index():
+    if session.get("username") == None:
+       return redirect(url_for('loginadmin'))
+
     #conn = get_db_connection()
     conn.set_isolation_level(psycopg2.extensions.ISOLATION_LEVEL_AUTOCOMMIT)
     cur = conn.cursor()
@@ -336,9 +399,14 @@ def index():
     pgs = cur.fetchall()
     cur.execute('SELECT * FROM job;')
     job = cur.fetchall()
+    cur.execute('SELECT * FROM fulltime;')
+    fulltime = cur.fetchall()
+    cur.execute('SELECT * FROM internship;')
+    intern = cur.fetchall()
+    
     cur.close()
     
-    return render_template('index.html', students=students, ugs=ugs, pgs=pgs,job=job)
+    return render_template('index.html', students=students, ugs=ugs, pgs=pgs,job=job, fulltime=fulltime, intern=intern)
 
 
 
@@ -351,10 +419,6 @@ def create():
 
     if session.get("username") == None:
        return redirect(url_for('login'))
-    
-    cur = conn.cursor()
-
-    existt=cur.execute('SELECT *  FROM Student WHERE EXISTS(SELECT 1 FROM Student WHERE regNo= (%s))',(session['username'],))
     
     if request.method == 'POST':
 
@@ -371,6 +435,7 @@ def create():
         typee = request.form['type']
         cgpa = request.form['cgpa']
         fa = request.form['fa']
+        sem = request.form['cursem']
        
 
         #conn = get_db_connection()
@@ -437,8 +502,7 @@ def create():
           cur.close()
           return render_template('home.html')
         except:
-            flash("Job Id alreay exists")
-            
+          flash("Already exist User!!!")   
           
     return render_template('create.html')
 
@@ -485,6 +549,14 @@ def view():
     
     cur = conn.cursor()
     cur.execute("SELECT 1")
+     
+    cur.execute('SELECT * from Student WHERE regNo= (%s)', (str(session['username']),))
+    x=cur.fetchall()
+       
+    if len(x)==0:
+        return redirect(url_for('create'))
+       
+    
     
     cur.execute('SELECT * from Student WHERE regNo = (%s)',(session['username'],))
     details=cur.fetchall()
@@ -589,4 +661,111 @@ def update():
     
 @app.route('/view_jobs')
 def view_jobs():
-    return "hello"
+    if session.get("username") == None:
+       return redirect(url_for('login'))
+    
+    cur = conn.cursor()
+    
+    cur.execute('SELECT * from Student WHERE regNo= (%s)', (str(session['username']),))
+    x=cur.fetchall()
+       
+    if len(x)==0:
+        return redirect(url_for('create'))
+       
+    
+    
+    
+    cur.execute('SELECT type from Student WHERE regNo = (%s)',(session['username'],))
+    typee=cur.fetchall()
+    typ=typee[0][0]
+
+    if typ=='UG':
+       cur.execute('SELECT branch from UG WHERE regNo = (%s)',(session['username'],))
+       branch=cur.fetchall()
+       #return branch
+       cur.execute('SELECT * from Job')
+       jobs=cur.fetchall()
+       cur.execute('SELECT cgpa from Student WHERE regNo = (%s)',(session['username'],))
+       cgpa=cur.fetchall()
+       #return jobs
+       ejobs=[]
+       
+       for jb in jobs:
+           strcourses=jb[3].split(",#")
+           l=[]
+           flag=0
+           for c in strcourses:
+              if c==jb[3] and float(cgpa[0][0])>=jb[4]:
+                  flag=1
+                  break
+           if flag==1:
+              cur.execute('SELECT package from fulltime WHERE job_Id = (%s)',(jb[0],))
+              ft=cur.fetchall()
+              
+              if ft:
+                jb=list(jb)
+                jb.append(str(ft[0][0]))
+                jb=tuple(jb)
+                ejobs.append(jb)
+              else:
+                cur.execute('SELECT salary,duration from internship WHERE job_Id = (%s)',(jb[0],))
+                it=cur.fetchall()
+                if it:
+                  jb=list(jb)
+                  jb.append(str(it[0][0]))
+                  jb.append(str(it[0][1]))
+                  jb=tuple(jb)
+                  ejobs.append(jb) 
+              
+       #return ejobs
+       return render_template('viewjobs.html',ejobs=ejobs)
+       
+    else:
+       cur.execute('SELECT branch from PG WHERE regNo = (%s)',(session['username'],))
+       branch=cur.fetchall()
+       cur.execute('SELECT * from Job')
+       jobs=cur.fetchall()
+       cur.execute('SELECT cgpa from Student WHERE regNo = (%s)',(session['username'],))
+       cgpa=cur.fetchall()
+      
+       
+      # return jobs
+       
+       ejobs=[]
+       
+       for jb in jobs:
+           strcourses=jb[3].split(",#")
+           l=[]
+           flag=0
+           for c in strcourses:
+              if c==jb[3] and float(cgpa[0][0])>=jb[4]:
+                  flag=1
+                  break
+           if flag==1:
+              cur.execute('SELECT package from fulltime WHERE job_Id = (%s)',(jb[0],))
+              ft=cur.fetchall()
+              
+              if ft:
+                jb=list(jb)
+                jb.append(str(ft[0][0]))
+                jb=tuple(jb)
+                ejobs.append(jb)
+              else:
+                cur.execute('SELECT salary,duration from internship WHERE job_Id = (%s)',(jb[0],))
+                it=cur.fetchall()
+                if it:
+                  jb=list(jb)
+                  jb.append(str(it[0][0]))
+                  jb.append(str(it[0][1]))
+                  jb=tuple(jb)
+                  ejobs.append(jb) 
+              
+       #return ejobs
+       return render_template('viewjobs.html',ejobs=ejobs)
+    
+    
+    
+    
+    
+    
+    

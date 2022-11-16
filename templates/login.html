@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <title>Login</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+  
  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -18,15 +18,7 @@
  
  <style>
  
-     *, body {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 400;
-            -webkit-font-smoothing: antialiased;
-            text-rendering: optimizeLegibility;
-            -moz-osx-font-smoothing: grayscale;
-            font-size:17px;
-        }
-
+ 
         html, body {
             height: 100%;
             background-color: ;
@@ -65,15 +57,14 @@
 	    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px;
 	    border-radius: 10px;
 	    text-align: left;
-	    -webkit-transition: all 0.4s ease;
-	    transition: all 0.4s ease;
+	    
 	}
 
-	.form-content h3 {
+	.form-control h3 {
 	    color: #111;
 	    text-align: left;
 	    font-size: 56px;
-	    font-weight: 600;
+	    font-weight: 800;
 	    margin-bottom: 5px;
 	}
 	
@@ -83,13 +74,23 @@
         }
 	
 	.form-control{
-	   height:50px;
-	   
+	   height:3em;
+	   font-size:17px;
+	}
+	
+	.form-check,p{
+	   font-size:17px;
+	}
+	
+	.alert{
+	   font-size:17px;
 	}
 	
  </style>
  
  </head>
+ 
+<body>
 
   <div class="login-box" >
   

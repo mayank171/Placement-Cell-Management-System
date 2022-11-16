@@ -1,19 +1,76 @@
 {% extends 'base.html' %}
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
  
 {% block content %}
+
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8">
+  <title>Fill Form</title>
+ <head>
+ <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+   <style>
+   
+   
+   
+   
+       .form-holder{
+          display:flex;
+          flex-direction:row;
+          
+       }
+       
+       
+       .form-holder:hover{
+          transform:scale(1.1.1.1);
+       }
+   
+       .form-control{
+          width:60%;
+          font-size:17px;
+       }
+       
+       .form-control:hover{
+          transform:scale(1.1.1.1);
+       }
+     
+       
+       .back{
+           float:right;
+       
+       }
+       
+       .close:visited .error{
+           visibility:0;
+       }
+   
+   
+   </style>
+
+</head>
+
+
+
+
+
+<body>
+
+
      <div class="form-body">
         <div class="row">
             <div class="form-holder">
-                <div class="form-content">
+                
+                <div class="form-content col-md-4">
+                    
                     <div class="form-items">
                         <form class="was-validated" on method="post">
                             <h3 class="header">Add your Details</h3>
                             
                             
-                            <div class="col-md-4">
+                            <div class="error col-md-4" style="width:100%;">
 			      {% with messages = get_flashed_messages()  %}
 				  {% if messages %}
 				  {% for message in messages %}
@@ -29,7 +86,7 @@
 	                    </div>
                             
                             <div class="col-md-12">
-                               <input class="form-control" type="text" name="regno" placeholder="Registration Number" minlength='9' maxlength='9' required>
+                               <input class="form-control" type="text" name="regno" placeholder="Registration Number" oninput="this.value = this.value.toUpperCase()" minlength='9' maxlength='9' required>
                                <div class="valid-feedback">Registration Number field is valid!</div>
                                <div class="invalid-feedback">Registration Number field cannot be blank!</div>
                             </div>
@@ -144,14 +201,20 @@
 
                             <div class="form-button mt-3">
                                 <button id="submit" type="submit" class="btn btn-primary">Register</button>
+                                <a link href="/home"><button type="button" class="back btn btn-dark">Back to Home</button></a>
                             </div>
+                            
+                            
+
+
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
+</body>
+</html>
 {% endblock %}
 
 
