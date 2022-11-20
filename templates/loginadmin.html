@@ -88,24 +88,125 @@
 	   font-size:17px;
 	}
 	
+<style media="screen">
+	*,*:before,*:after{
+	    padding: 0;
+	    margin: 0;
+	    box-sizing: border-box;
+	}
+	body{
+	    background-color: #fff;
+	}
+	.background{
+	    width: 430px;
+	    height: 520px;
+	    position: absolute;
+	    transform: translate(-50%,-50%);
+	    left: 50%;
+	    top: 50%;
+	}
+	.background .shape{
+	    height: 200px;
+	    width: 200px;
+	    position: absolute;
+	    border-radius: 50%;
+	}
+	.shape:first-child{
+	    background: linear-gradient(
+		#1845ad,
+		#23a2f6
+	    );
+	    left: -130px;
+	    top: -90px;
+	}
+	.shape:last-child{
+	    background: linear-gradient(
+		to right,
+		#ff512f,
+		#f09819
+	    );
+	    right: -130px;
+	    bottom: -120px;
+	}
+	form{
+	    height: 550px;
+	    width: 500px;
+	    background-color: rgba(255,255,255,0.13);
+	    position: absolute;
+	    transform: translate(-50%,-50%);
+	    top: 52%;
+	    left: 50%;
+	    border-radius: 10px;
+	    backdrop-filter: blur(10px);
+	    border: 2px solid rgba(255,255,255,0.1);
+	    box-shadow: 0 0 40px rgba(8,7,16,0.6);
+	    padding: 50px 35px;
+	}
+	form *{
+	    font-family: 'Poppins',sans-serif;
+	    color: #ffffff;
+	    letter-spacing: 0.5px;
+	    outline: none;
+	    border: none;
+	}
+	form h3{
+	    font-size: 32px;
+	    font-weight: 500;
+	    line-height: 42px;
+	    color:black;
+	    text-align: center;
+	}
+
+	label{
+	    display: block;
+	    margin-top: 30px;
+	    color:black;
+	    font-size: 16px;
+	    font-weight: 500;
+	}
+	input{
+	    display: block;
+	    height: 50px;
+	    width: 100%;
+	    border: 2px solid rgba(0, 0, 0, 0.3);
+	    border-radius: 3px;
+	    padding: 0 10px;
+	    margin-top: 8px;
+	    font-size: 14px;
+	    font-weight: 300;
+	}
+	::placeholder{
+	    color: grey;
+	}
+	
+	.btn{
+	    width: 100%;
+	    background-color: #393e46;
+	    color: #fff;
+	    padding: 15px 0;
+	    font-size: 18px;
+	    font-weight: 600;
+	    border-radius: 5px;
+	    cursor: pointer;
+	}
+	
  </style>
  
  </head>
 
   <div class="login-box" >
   
- 
+<!-- 
  <section class="vh-100">
   <div class="container-fluid h-custom">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-md-9 col-lg-6 col-xl-5" style="float:left;">
-        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+        <img src="https://img.freepik.com/free-vector/people-analyzing-growth-charts_23-2148866843.jpg?w=1060&t=st=1668791359~exp=1668791959~hmac=ea225626569c41671b640f9dffe7d14dfc9f98c7e7b7f28cfdd2e22fa384a9b5"
           class="img-fluid" alt="Sample image">
       </div>
       <div class="container2 col-md-8 col-lg-6 col-xl-4 offset-xl-1">
         <form class="form-group" action="{{ url_for('loginadmin') }}" method="post" class="was-validated" on method="post">
            <h3 class="header">Admin Login</h3>
-          <!-- Admin Name input -->
           <div class="form-outline mb-4">
             <input type="text" id="username" class="form-control form-control-lg"
               placeholder="Enter a valid Admin Registration Number" name="username" oninput="this.value = this.value.toUpperCase()" minlength="9" maxlength="9"  required />
@@ -113,7 +214,6 @@
                    <div class="invalid-feedback">Admin Registration Number field cannot be blank!</div>
           </div>
 
-          <!-- Password input -->
           <div class="form-outline mb-3">
             <input type="password" id="password" class="form-control form-control-lg"
               placeholder="Enter password" name="password" required/>
@@ -123,7 +223,6 @@
           
 
           <div class="d-flex justify-content-between align-items-center">
-            <!-- Checkbox -->
             <div class="form-check mb-0">
               <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
               <label class="form-check-label" for="form2Example3">
@@ -156,9 +255,56 @@
       </div>
     </div>
 </section>
+
+-->
  
- 
- 
+ <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+    <form class="form-group" action="{{ url_for('loginadmin') }}" method="post" class="was-validated" on method="post">
+        <h3>Admin Login</h3>
+
+        <label for="username">Username</label>
+        <div class="form-outline mb-4">
+            <input type="text" id="username" class="form-control form-control-lg"
+              placeholder="Enter a valid Admin Registration Number" name="username" oninput="this.value = this.value.toUpperCase()" minlength="9" maxlength="9"  required />
+            <div class="valid-feedback">Admin Registration Number field is valid!</div>
+                   <div class="invalid-feedback">Admin Registration Number field cannot be blank!</div>
+          </div>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" class="form-control form-control-lg"
+              placeholder="Enter password" name="password" required/>
+            <div class="valid-feedback">Password field is valid!</div>
+                   <div class="invalid-feedback">Password field cannot be blank!</div>
+
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="form-check mb-0">
+              <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
+              <label class="form-check-label" for="form2Example3" style="margin-top:0px">
+                Remember me
+              </label>
+            </div>
+          </div>
+
+          <div class="text-center text-lg-start mt-4 pt-2">
+            <input type="submit" class="btn btn-primary" style="padding-left: 2.5rem; padding-right: 2.5rem;" value="Login" class="form-control btn btn-success " name="">
+          </div>
+          
+          
+          {% with messages = get_flashed_messages()  %}
+          {% if messages %}
+          {% for message in messages %}
+           <div class="alert alert-success alert-dismissible" style="background:red; margin-top:15px;">
+                  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> 
+                  <strong style="color: white;">{{ message }}</strong> 
+               </div>
+         {% endfor %}
+         {% endif %}
+       {% endwith %}    
+    </form>
+    
  
  </body>
 </html>

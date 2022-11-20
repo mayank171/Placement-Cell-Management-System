@@ -196,16 +196,7 @@
 		                        </div>
 		                    </div>
 		                    <a class="edit btn btn-primary" href="/edit/">Edit</a>
-					{% with messages = get_flashed_messages()  %}
-					  {% if messages %}
-					  {% for message in messages %}
-					   <div class="alert alert-success alert-dismissible">
-						  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> 
-						  <strong>{{ message }}</strong> 
-			                 </div>
-			                 {% endfor %}
-					  {% endif %}
-				       {% endwith %}
+					
 				       
 				     <a link href="/home"><button type="button" class="back btn btn-dark">Back to Home</button></a>
        
@@ -224,7 +215,17 @@
 		                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" title="" alt="">
 		                  </div>
 		              </div>
-		            {% endif %}  
+		            {% endif %} 
+		            {% with messages = get_flashed_messages()  %}
+                           {% if messages %}
+		     	       {% for message in messages %}
+				   <div class="alert alert-success alert-dismissible">
+	 			   <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> 
+		 		   <strong>{{ message }}</strong> 
+			           </div>
+	                       {% endfor %}
+   			     {% endif %}
+		         {% endwith %} 
 		        </div>
 		        
 		        

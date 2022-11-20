@@ -88,8 +88,16 @@ cur.execute('create table internship( job_Id varchar(50),'
 
 
 
-# Insert data into the table
+cur.execute('DROP TABLE IF EXISTS stats;')
+cur.execute('CREATE TABLE stats( regno varchar(100) PRIMARY KEY,'
+                                   'job_id varchar(50));'
+                                 )
 
+
+cur.execute('DROP TABLE IF EXISTS applied;')
+cur.execute('CREATE TABLE applied( regno varchar(100) PRIMARY KEY,'
+                                   'companies varchar(500));'
+                                 )
 
 
 

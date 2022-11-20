@@ -15,15 +15,15 @@
       margin-bottom:2%;
       transition: 0.5s ease;
       border-radius:10px;
-     
-           
+
+
     }
-    
+
     .container1:hover{
       transform:scale(1.075,1.1);
-      
+
     }
-    
+
     .hidden {
       font-size:20px;
       transition:0.3s;
@@ -31,47 +31,47 @@
       color:#fff;
       margin-bottom:1em;
     }
-    
+
     .same{
       display:flex;
       justify-content:center;
       align-items:center;
     }
-    
+
     .sameline1{
       display:inline-block;
       padding-right:2em;
     }
-    
+
     .sameline2{
       display:inline-block;
       padding-left:2em;
     }
-    
+
     .sameline3{
       display:inline-block;
       padding-left:2em;
     }
-    
-    
-    
+
+
+
     h5{
       display:inline-block;
       font-weight:800;
       color:#fff;
     }
-    
+
    a{
       height:100px;
       font-size:30px;
       display:flex;
       align-items:center;
       justify-content:center;
-      transition: transform 1s linear; 
+      transition: transform 1s linear;
       color:red;
       text-decoration:none;
     }
-    
+
     .applybtn{
       display:flex;
       margin-left:auto;
@@ -88,16 +88,16 @@
       box-shadow: 0 0px 0px 0 rgba(4, 189, 228, 0.75);
       text-decoration:none;
     }
-    
+
     .applybtn:hover{
-      background-position: 100% 0; 
+      background-position: 100% 0;
       box-shadow: 0 4px 35px 0 rgba(4, 189, 228, 0.75);
       transition: all .4s ease-in-out;
      }
-		
-    
-    
-    
+
+
+
+
     .back{
       display:flex;
       margin-left:auto;
@@ -113,11 +113,11 @@
       box-shadow: 0 4px 5px 0 rgba(0, 0, 0);
       text-decoration:none;
     }
-    
-    
-	
- 
-  
+
+
+
+
+
 </style>
 
 
@@ -128,7 +128,7 @@
      {% if ej|length==8 %}
        <div class="container1">
          <a style="color:#fff">{{ ej[1] }}</a>
-        
+
           <div class="hidden">
            <div class="same">
             <div class="sameline1">
@@ -140,15 +140,19 @@
               <h5>Location:</h5> {{ej[5]}}<br>
             </div>
            </div>
-         
+
           </div>
-          <a><button type="button" class="applybtn btn btn-dark" id="{{ej.id}}" onclick="click1('{{ej.id}}',this)">Apply</button></a>
+          {% if ej[1] in complist %}
+             <a href="/applied/{{ej[1]}}"><button type="button" class="applybtn btn btn-dark" id="{{ej.id}}" onclick="click1('{{ej.id}}',this)" disabled>Apply</button></a>
+          {% else %}
+             <a href="/applied/{{ej[1]}}"><button type="button" class="applybtn btn btn-dark" id="{{ej.id}}" onclick="click1('{{ej.id}}',this)">Apply</button></a>
+          {% endif %}
        </div>
-       
+
      {% else %}
        <div class="container1">
          <a style="color:#fff">{{ ej[1] }}</a>
-        
+
           <div class="hidden">
            <div class="same">
             <div class="sameline1">
@@ -159,47 +163,50 @@
               <h5>Stipend:</h5> {{ej[7]}}<br>
               <h5>Location:</h5> {{ej[5]}}<br>
             </div>
-            
+
             <div class="sameline3">
               <h5>Duration:</h5> {{ej[8]}}
             </div>
             </div>
           </div>
-          <a ><button type="button" class="applybtn btn btn-dark" id="{{ej.id}}" onclick="click2('{{ej.id}}',this)"> Apply</button></a>
-        </div>
-         
 
-     
+          <a href="/applied/{{ej[0]}}"><button type="button" class="applybtn btn btn-dark" id="{{ej.id}}" onclick="click2('{{ej.id}}',this)"> Apply</button></a>
+        </div>
+
+
+
      {% endif %}
      {% set count=count+1 %}
     {% endfor %}
-   
+
     <a link href="/home"><button type="button" class="back btn btn-dark">Back to Home</button></a>
-    
+
 
 <script>
-       
+
        var click1=function(value,object){
            object.innerText="Applied";
            object.disabled="True";
            object.preventDefault();
            return false;
        };
-       
+
        var click2=function(value,object){
            object.innerText="Applied";
            object.disabled="True";
            object.preventDefault();
            return false;
        };
-       
-        
-</script>
-      
 
-    
-</body>   
-   
+
+
+
+</script>
+
+
+
+</body>
+
 
 
 

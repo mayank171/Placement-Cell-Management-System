@@ -1,8 +1,9 @@
 {% extends "layout.html" %}
+
 {% block body %}
 
 <style>
- 
+
         .form-body{
             display:flex;
             flex-direction:column;
@@ -32,18 +33,18 @@
 	    transition: all 0.3s ease;
 	    margin-top: 10px;
 	}
-	
+
 	.form-group{
 	    background-color:#fff;
 	}
-	
-	
+
+
 	.btn-primary{
 	    background-color: #6C757D;
 	    outline: none;
 	    border: 0px;
 	    box-shadow: none;
-	  
+
 	}
 
 	.btn-primary:hover, .btn-primary:focus, .btn-primary:active{
@@ -53,7 +54,7 @@
 	     box-shadow: none;
 	}
 
-	
+
 	.invalid-feedback{
 	    color: #ff606e;
 	}
@@ -61,22 +62,15 @@
 	.valid-feedback{
 	   color: #2acc80;
 	}
-	
+
 	.navbar-nav{
-   	
+
 	}
-	
-	.nav-item{
-	   font-size:20px;
-	   font-family: 'Poppins', sans-serif;
-           font-weight: bold;
-           -webkit-font-smoothing: antialiased;
-        }
-        
+
         .back{
            height:45px;
            float:right;
-        
+
         }
 
 
@@ -86,25 +80,25 @@
    <div class="form-holder">
      <div class="form-content">
        <div class="form-items">
-                     
+
           <form action="{{url_for('add_job')}}" method="POST" class="was-validated" on method="post">
             <h3 class="header">Add New Details</h3>
-            
+
              <div class="col-md-4">
 	      {% with messages = get_flashed_messages()  %}
 		  {% if messages %}
 		  {% for message in messages %}
-		  
+
 		   <div class="alert alert-success alert-dismissible">
 		      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-		      <strong>{{ message }}</strong> 
+		      <strong>{{ message }}</strong>
 		   </div>
 		 {% endfor %}
 		 {% endif %}
               {% endwith %}
-	      
+
 	     </div>
-            
+
             <div class="col-md-12">
                <input type="text" class="form-content" name="job_Id" placeholder="Enter Job-ID" minlength='6' maxlength='6' required>
                 <div class="valid-feedback">Job-ID field is valid!</div>
@@ -116,100 +110,109 @@
                 <div class="valid-feedback">Company Name field is valid!</div>
                 <div class="invalid-feedback">Company Name field cannot be blank!</div>
             </div>
-                            
+
             <div class="form-group">
                <select width=100 style="width: 97%; height:40px; display:flex; margin-left:auto; margin-right:auto; font-weight:400; border-radius:5px; font-size:16px; -moz-appearance: none;-webkit-appearance: none;background-color:#9E9E9E;color:#fff;"    name="Position" required>
                  <option value='sde'>Software Developer</option>
-                 <option value='software engineer'>Software Engineer</option>
-                 <option value='data analyst'>Data Analyst</option>
-                 <option value='data engineer'>Data Engineer</option>
-                 <option value='data scientist'>Data Scientist</option>
+                 <option value='software-engineer'>Software Engineer</option>
+                 <option value='data-analyst'>Data Analyst</option>
+                 <option value='data-engineer'>Data Engineer</option>
+                 <option value='data-scientist'>Data Scientist</option>
                </select>
              </div>
-        
 
-                            
+
+
              <div class="form-group" >
-              
+
                 <label class="container">Bachelor of Technology, Mechanical Engineering
-		  <input type="checkbox" name="Eligibility" value="Bachelor of Technology, Mechanical Engineering">
-		  <span class="checkmark"></span>
-		</label>
-		<label class="container">Bachelor of Technology, Chemical Engineering
-		  <input type="checkbox" name="Eligibility" value="Bachelor of Technology, Chemical Engineering">
-		  <span class="checkmark"></span>
-		</label>
-		<label class="container">Bachelor of Technology, Computer Science Engineering
-		  <input type="checkbox" name="Eligibility" value="Bachelor of Technology, Computer Science Engineering">
-		  <span class="checkmark"></span>
-		</label>
-		<label class="container">Bachelor of Technology, Electrical Engineering
-		  <input type="checkbox" name="Eligibility" value="Bachelor of Technology, Electrical Engineering">
-		  <span class="checkmark"></span>
-		</label>
-		<label class="container">Bachelor of Technology, Electronics and Communication Engineering
-		  <input type="checkbox" name="Eligibility" value="Bachelor of Technology, Electronics and Communication Engineering"">
-		  <span class="checkmark"></span>
-		</label>
-		<label class="container">Master in Computer Applications
-		  <input type="checkbox" name="Eligibility" value="Master in Computer Applications">
-		  <span class="checkmark"></span>
-		</label>
-		<label class="container">Master of Technology, Mechanical Engineering
-		  <input type="checkbox" name="Eligibility" value="Master of Technology, Mechanical Engineering">
-		  <span class="checkmark"></span>
-		</label>
-		<label class="container">Master of Technology, Chemical Engineering
-		  <input type="checkbox" name="Eligibility" value="Master of Technology, Chemical Engineering">
-		  <span class="checkmark"></span>
-		</label>
-		<label class="container">Master of Technology, Computer Science Engineering
-		  <input type="checkbox" name="Eligibility" value="Master of Technology, Computer Science Engineering">
-		  <span class="checkmark"></span>
-		</label>
-		<label class="container">Master of Technology, Electrical Engineering
-		  <input type="checkbox" name="Eligibility" value="Master of Technology, Electrical Engineering">
-		  <span class="checkmark"></span>
-		</label>
-		
-		<label class="container">Master of Technology, Electronics and Communication Engineering
-		  <input type="checkbox" name="Eligibility" value="Master of Technology, Electronics and Communication Engineering">
-		  <span class="checkmark"></span>
-		</label>
-		
-		
-		
-		
+            		  <input type="checkbox" name="Eligibility" value="Bachelor of Technology, Mechanical Engineering">
+            		  <span class="checkmark"></span>
+            		</label>
+
+            		<label class="container">Bachelor of Technology, Chemical Engineering
+            		  <input type="checkbox" name="Eligibility" value="Bachelor of Technology, Chemical Engineering">
+            		  <span class="checkmark"></span>
+            		</label>
+
+            		<label class="container">Bachelor of Technology, Computer Science Engineering
+            		  <input type="checkbox" name="Eligibility" value="Bachelor of Technology, Computer Science Engineering">
+            		  <span class="checkmark"></span>
+            		</label>
+
+            		<label class="container">Bachelor of Technology, Electrical Engineering
+            		  <input type="checkbox" name="Eligibility" value="Bachelor of Technology, Electrical Engineering">
+            		  <span class="checkmark"></span>
+            		</label>
+
+            		<label class="container">Bachelor of Technology, Electronics and Communication Engineering
+            		  <input type="checkbox" name="Eligibility" value="Bachelor of Technology, Electronics and Communication Engineering">
+            		  <span class="checkmark"></span>
+            		</label>
+
+            		<label class="container">Master in Computer Applications
+            		  <input type="checkbox" name="Eligibility" value="Master in Computer Applications">
+            		  <span class="checkmark"></span>
+            		</label>
+
+            		<label class="container">Master of Technology, Mechanical Engineering
+            		  <input type="checkbox" name="Eligibility" value="Master of Technology, Mechanical Engineering">
+            		  <span class="checkmark"></span>
+            		</label>
+
+            		<label class="container">Master of Technology, Chemical Engineering
+            		  <input type="checkbox" name="Eligibility" value="Master of Technology, Chemical Engineering">
+            		  <span class="checkmark"></span>
+            		</label>
+
+            		<label class="container">Master of Technology, Computer Science Engineering
+            		  <input type="checkbox" name="Eligibility" value="Master of Technology, Computer Science Engineering">
+            		  <span class="checkmark"></span>
+            		</label>
+
+            		<label class="container">Master of Technology, Electrical Engineering
+            		  <input type="checkbox" name="Eligibility" value="Master of Technology, Electrical Engineering">
+            		  <span class="checkmark"></span>
+            		</label>
+
+            		<label class="container">Master of Technology, Electronics and Communication Engineering
+            		  <input type="checkbox" name="Eligibility" value="Master of Technology, Electronics and Communication Engineering">
+            		  <span class="checkmark"></span>
+            		</label>
+
+
+
+
               </div>
 
-                            
+
               <div class="col-md-12">
                   <input class="form-content"  type="number" name="CGPA"  placeholder="Enter your CGPA" step="0.01" required>
                   <div class="valid-feedback">CGPA field is valid!</div>
                   <div class="invalid-feedback">CGPA field cannot be blank!</div>
               </div>
-              
-                            
+
+
               <div class="col-md-12">
                   <input type="text" class="form-content" name="Location" placeholder="Location" minlength='6' maxlength='30' required>
                   <div class="valid-feedback">Location field is valid!</div>
                   <div class="invalid-feedback">Location field cannot be blank!</div>
               </div>
-           
-              
+
+
               <div class="form-group">
                    <select width=100 style="width: 97%; height:40px; display:flex; margin-left:auto; margin-right:auto; font-weight:400; border-radius:5px; font-size:16px; -moz-appearance: none;-webkit-appearance: none;background-color:#9E9E9E;color:#fff;"   name="type" required>
                    <option value='Fulltime'>Full Time</option>
                    <option value='internship'>Internship</option>
                    </select>
               </div>
-                       
-                 
+
+
               <button class="btn btn-primary btn" style="text-align:center; margin-left:1%;width:100px; height:40px;">
                 Proceed
               </button>
               <a link href="/adminhome"><button type="button" class="back btn btn-dark">Back to Home</button></a>
-           
+
 
 
        </form>
@@ -221,4 +224,3 @@
 
 
 {% endblock %}
-

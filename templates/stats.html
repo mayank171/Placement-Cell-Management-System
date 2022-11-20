@@ -1,0 +1,315 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<script src=
+"https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js">
+   </script>
+
+
+ <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+ <script type="text/javascript">
+ // Load google charts
+ google.charts.load('current', {'packages':['corechart']});
+ google.charts.setOnLoadCallback(drawChart);
+
+ // Draw the chart and set the chart values
+ function drawChart() {
+   var data = google.visualization.arrayToDataTable([
+   ['Course', 'Students Placed'],
+   ['MCA', {{m}}],
+   ['MTech', {{mt}}],
+   ['BTech', {{bt}}]
+  ]);
+
+   // Optional; add a title and set the width and height of the chart
+   var options = { 'title':'Placements Batch-Wise','width':550, 'height':550};
+
+   // Display the chart inside the <div> element with id="piechart"
+   var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+   chart.draw(data, options);
+ }
+ </script>
+ <script type="text/javascript">
+  // Load google charts
+  google.charts.load('current', {'packages':['corechart']});
+  google.charts.setOnLoadCallback(drawChart);
+
+  // Draw the chart and set the chart values
+  function drawChart() {
+    var data = google.visualization.arrayToDataTable([
+    ['Placement Type', 'Students'],
+    ['Not Placed', {{np}}],
+    ['Full Time', {{ft}}],
+    ['Internship', {{i}}]
+   ]);
+
+    // Optional; add a title and set the width and height of the chart
+    var options = { 'title':'Types of Placement','width':550, 'height':550};
+
+    // Display the chart inside the <div> element with id="piechart"
+    var chart = new google.visualization.PieChart(document.getElementById('piechart2'));
+    chart.draw(data, options);
+  }
+  </script>
+<style>
+   #tab
+   {
+     display:flex;
+     align-items:center;
+     justify-content:center;
+
+   }
+
+   .row{
+     margin-left:none;
+   }
+
+   #makepdf{
+     box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+     border-radius:10px;
+   }
+
+   .graph1{
+     display:inline-flex;
+     flex-direction:column;
+     align-items:center;
+     justify-content:center;
+     margin-right:5px;
+   }
+
+   .graph2{
+     display:inline-flex;
+     flex-direction:column;
+     align-items:center;
+     justify-content:center;
+     margin-left:5px;
+   }
+
+
+
+   .btnadd{
+      display:flex;
+      margin-left:auto;
+      margin-right:auto;
+      justify-content:center;
+      align-items:center;
+      margin-top:30px;
+      height:50px;
+      font-size:17px;
+      transition:1s;
+      width:61%;
+      border-radius:10px;
+
+      background-image: linear-gradient(to right,  #0D324D , #7F5A83);
+                 box-shadow: 0 4px 10px 0 rgba(65, 12, 234, 0.75);
+
+   }
+
+   .btnadd:hover{
+      background-position: 100% 0;
+      transition: all .4s ease-in-out;
+   }
+
+   .btnpdf{
+      display:flex;
+      margin-left:auto;
+      margin-right:auto;
+      justify-content:center;
+      align-items:center;
+      margin-top:30px;
+      margin-bottom:20px;
+
+      height:50px;
+      font-size:17px;
+      transition:1s;
+      width:61%;
+      border-radius:10px;
+
+      background-image: linear-gradient(to right,  #0D324D , #7F5A83);
+                 box-shadow: 0 4px 10px 0 rgba(65, 12, 234, 0.75);
+
+   }
+
+   .btnpdf:hover{
+      background-position: 100% 0;
+      transition: all .4s ease-in-out;
+   }
+
+   .example{
+     width:120%;
+     border:none;
+     display:flex;
+     justify-content:center;
+     align-items:center;
+   }
+
+
+
+</style>
+
+
+<div class="row"><h1>Statistics</h1>
+
+<div class="col">
+{% with messages = get_flashed_messages()  %}
+{% if messages %}
+{% for message in messages %}
+
+<div class="alert alert-success alert-dismissible">
+<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+<strong>{{ message }}</strong>
+</div>
+{% endfor %}
+{% endif %}
+{% endwith %}
+
+</div>
+</div>
+
+ <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+   <div class="modal-dialog modal-dialog-centered" role="document">
+     <div class="modal-content">
+       <div class="modal-header">
+         <h5 class="modal-title" id="exampleModalLongTitle">Add Student</h5>
+         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+           <span aria-hidden="true">&times;</span>
+         </button>
+       </div>
+       <div class="modal-body">
+        <form action="{{url_for('add_stats')}}" method="POST">
+            <div class="form-group">
+            <input type="text" class="form-control" name="job_Id" placeholder="Job ID" required>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" name="regNo" placeholder="Reg. No." required>
+          </div>
+          <button class="btn btn-primary btn-block">
+            Save
+          </button>
+        </form>
+      </div>
+       </div>
+     </div>
+   </div>
+<div id="makepdf">
+  <div class="graph1">
+   {% if bt!=0  or  mt!=0 or  m!=0 %}
+       <div id="piechart"></div>
+   {% endif %}
+  </div>
+  <div class="graph2">
+   {% if ft!=0  or  np!=0 or  i!=0 %}
+       <div id="piechart2"></div>
+   {% endif %}
+  </div>
+   <div id="tab">
+     <table >
+         <tr >
+         <td  >
+           <h3>Average={{average}}</h3>
+         </td>
+         </tr>
+         <tr>
+            <td><h3>Highest={{highest}}</h3></td>
+         </tr>
+         <tr>
+            <td><h3>Lowest={{lowest}}</h3></td>
+         </tr>
+
+     </table>
+   </div>
+</div>
+
+<button type="button" class="btnadd btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+  Add Student
+</button>
+
+  <h2>Full Time</h2>
+      <table class="example table table-striped table-bordered">
+       <tbody>
+
+            <th>Roll No.</th>
+            <th>FirstName</th>>
+            <th>LastName</th>
+            <th>Job ID</th>
+            <th>Company Name</th>
+            <th>Position</th>
+            <th>Type</th>
+            <th>Package</th>
+            <th>Delete</th>
+
+          {% for row in list_users %}
+          <tr>
+            <td>{{row[0]}}</td>
+            <td>{{row[1]}}</td>
+            <td>{{row[2]}}</td>
+            <td>{{row[3]}}</td>
+            <td>{{row[4]}}</td>
+            <td>{{row[6]}}</td>
+            <td>{{row[5]}}</td>
+            <td>{{row[7]}}</td>
+            <td width="130">
+              <a href="/deletestat/{{row[0]}}" class="btn btn-danger btn-delete btn-sm">delete</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <h2>Internship</h2>
+      <table  class="example table table-striped table-bordered" >
+         <tbody>
+            <th>Roll No.</th>
+            <th>FirstName</th>
+            <th>LastName</th>
+            <th>Job ID</th>
+            <th>Company Name</th>
+            <th>Position</th>
+            <th>Type</th>
+            <th>Salary</th>
+            <th>Delete</th>
+
+          {% for row in intern %}
+          <tr>
+            <td>{{row[0]}}</td>
+            <td>{{row[1]}}</td>
+            <td>{{row[2]}}</td>
+            <td>{{row[3]}}</td>
+            <td>{{row[4]}}</td>
+            <td>{{row[6]}}</td>
+            <td>{{row[5]}}</td>
+            <td>{{row[7]}}</td>
+            <td width="130">
+              <a href="/deletestat/{{row[0]}}" class="btn btn-danger btn-delete btn-sm">delete</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+
+
+  <button type="button"  id="button" class="btnpdf btn-primary" data-toggle="modal" >Generate Pdf</button>
+
+
+  <script>
+
+
+     var button = document.getElementById("button");
+      var makepdf = document.getElementById("makepdf");
+
+      button.addEventListener("click", function () {
+          html2pdf(makepdf,{
+            margin:0,
+            filename:'statsPdf.pdf',
+            html2canvas: {scale:2, logging:true, dpi:102, letterRendering:true},
+            jsPDF: {unit: 'mm', format: 'a4', orientation: 'portrait'}
+          }).save();
+      });
+
+
+
+  </script>
+
+  {% endblock %}

@@ -11,12 +11,13 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lato&family=Sora:wght@300;400&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css" integrity="sha384-jLKHWM3JRmfMU0A5x5AkjWkw/EYfGUAGagvnfryNV3F9VqM98XiIH7VBGVoxVSc7" crossorigin="anonymous">
  
-    <style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
         
- 
-        
-        
+<style> 
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;900&display=swap');
 
         *, body {
@@ -25,6 +26,7 @@
             font-weight: 400;
             -webkit-font-smoothing: antialiased;
             text-rendering: optimizeLegibility;
+            
             -moz-osx-font-smoothing: grayscale;
         }
 
@@ -227,7 +229,7 @@
 	
 	.nav-item:hover{
 	    box-shadow: rgba(0,255,255, 255) 0px 3px 10px;
-	    border-radius:20px;
+	    border-radius:10px;
 	    color:#111;
 	    
 	}
@@ -373,35 +375,36 @@
       {% if session['username']=='M210678CA' %}
              <li class="nav-item">
 		<a class="nav-link" href="http://127.0.0.1:5000/adminhome">
+		    <i class="fa fa-house-user"></i>
 		    Home
 		</a>
 	      </li>
 	      <li class="nav-item">
 		<a class="nav-link" href="http://127.0.0.1:5000/logoutadmin">
-		      LogoutAdmin
+		     <i class="fa fa-right-from-bracket"></i> LogoutAdmin
 		</a>
 	      </li>
       {% elif session['loggedin']  %}
 	      <li class="nav-item">
 		<a class="nav-link" href="http://127.0.0.1:5000/home">
-		    Home
+		    <i class="fa fa-house-user"></i>Home
 		</a>
 	      </li>
 	      <li class="nav-item">
 		<a class="nav-link" href="http://127.0.0.1:5000/logout">
-		    Logout
+		   <i class="fa fa-right-from-bracket"></i>Logout
 		</a>
 	      </li>
 	{% else %}
 	      <li class="nav-item">
 		<a class="nav-link" href="http://127.0.0.1:5000/login">
-		    Login
+		   <i class="fa fa-right-to-bracket"></i>Login
 		</a>
 	      </li>
 	      
               <li class="nav-item">
                <a class="nav-link" href="http://127.0.0.1:5000/loginadmin">
-		    LoginAdmin
+		   <i class="fa fa-screwdriver-wrench"></i>LoginAdmin
 		</a>
               </li>
       {% endif %}
