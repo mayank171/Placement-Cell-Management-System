@@ -18,7 +18,7 @@
 	}
 
 	.form-content input[type=text],.form-content input[type=number],.form-content select {
-	    width: 100%;
+	    width: 50%;
 	    height:3em;
 	    padding: 9px 20px;
 	    text-align: left;
@@ -78,8 +78,8 @@
 <div class="form-body">
  <div class="row">
    <div class="form-holder">
-     <div class="form-content">
-       <div class="form-items">
+     <div class="form-content" style="width:60%;">
+       <div class="form-items" style=" margin-top:5rem;">
 
           <form action="{{url_for('add_job')}}" method="POST" class="was-validated" on method="post">
             <h3 class="header">Add New Details</h3>

@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<style>
+
+  @charset "utf-8";
+#container5 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  padding: 20px;
+}
+.btn {
+  position: relative;
+  width: 50%;
+  height: 60px;
+  overflow: hidden;
+  border: none;
+  border-radius: none;
+  background-color: #635dc7;
+  color: #fff;
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+  outline: none;
+  cursor: pointer;
+  box-shadow: blue 0px 0px 0px 2px inset, rgb(255, 255, 255) 10px -10px 0px -3px, rgb(31, 193, 27) 10px -10px, rgb(255, 255, 255) 20px -20px 0px -3px, rgb(255, 217, 19) 20px -20px, rgb(255, 255, 255) 30px -30px 0px -3px, rgb(255, 156, 85) 30px -30px, rgb(255, 255, 255) 40px -40px 0px -3px, rgb(255, 85, 85) 40px -40px;
+}
+.btn::before {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  content: 'You have been Placed';
+  transition: all .3s;
+
+}
+.btn::after {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 60px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  content: 'Click Me to go Back to HomePage';
+  transition: all .3s;
+}
+.btn:hover::before {
+  top: -60px;
+
+}
+.btn:hover::after {
+  top: 0;
+}
+
+
+</style>
+    <div id="container5">
+          <a href="/home" class="btn"></a>
+    </div>
+{% endblock %}

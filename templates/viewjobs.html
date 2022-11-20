@@ -143,7 +143,7 @@
 
           </div>
           {% if ej[1] in complist %}
-             <a href="/applied/{{ej[1]}}"><button type="button" class="applybtn btn btn-dark" id="{{ej.id}}" onclick="click1('{{ej.id}}',this)" disabled>Apply</button></a>
+             <a><button type="button" class="applybtn btn btn-dark" id="{{ej.id}}" onclick="click1('{{ej.id}}',this)" disabled >Applied</button></a>
           {% else %}
              <a href="/applied/{{ej[1]}}"><button type="button" class="applybtn btn btn-dark" id="{{ej.id}}" onclick="click1('{{ej.id}}',this)">Apply</button></a>
           {% endif %}
@@ -169,8 +169,11 @@
             </div>
             </div>
           </div>
-
-          <a href="/applied/{{ej[0]}}"><button type="button" class="applybtn btn btn-dark" id="{{ej.id}}" onclick="click2('{{ej.id}}',this)"> Apply</button></a>
+          {% if ej[1] in complist %}
+             <a><button type="button" class="applybtn btn btn-dark" id="{{ej.id}}" onclick="click2('{{ej.id}}',this)" disabled> Applied</button></a>
+          {% else %}
+             <a href="/applied/{{ej[1]}}"><button type="button" class="applybtn btn btn-dark" id="{{ej.id}}" onclick="click2('{{ej.id}}',this)"> Apply</button></a>
+          {% endif %}
         </div>
 
 

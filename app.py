@@ -665,12 +665,26 @@ def update():
 
 
 
+@app.route('/placed')
+def placed():
+    return render_template('placed.html')
+
+
 
 @app.route('/view_jobs')
 def view_jobs():
     if session.get("username") == None:
        return redirect(url_for('login'))
 
+
+    cur = conn.cursor()
+    cur.execute('SELECT regno FROM stats WHERE regno = %s',
+                  (session['username'],))
+    a=cur.fetchone()
+    
+
+    if a is not None:
+        return redirect(url_for('placed'))
 
 
     cur = conn.cursor()
@@ -757,9 +771,9 @@ def view_jobs():
        cur.execute('SELECT companies from applied WHERE regno = %s',(session['username'],))
        companies=cur.fetchall()
 
-       #return str(companies[0][0])
-
-       complist=companies[0][0].split(' ')
+       complist=""
+       if companies[0][0] is not None:
+          complist=companies[0][0].split(' ')
 
 
 
@@ -814,7 +828,8 @@ def applied(id):
 
     for s in companies:
         comps=comps+" "
-        comps=comps+s[0]
+        if s[0] is not None:
+           comps=comps+s[0]
         #return comps
     comps=comps+" ";
     comps=comps+str(id)
@@ -829,6 +844,7 @@ def applied(id):
     #return str(companies[0][0])
 
     complist=companies[0][0].split(' ')
+    #return complist
 
     return redirect(url_for('view_jobs'))
 
