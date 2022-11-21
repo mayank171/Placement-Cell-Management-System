@@ -11,17 +11,17 @@
  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
- 
+
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
- 
- 
- 
- 
+
+
+
+
 
 <style>
- 
+
         .header{
             font-family: 'Poppins', sans-serif;
             font-weight: 400;
@@ -30,7 +30,7 @@
             align-items: center;
             text-align: center;
             padding:0 0 10px 0;
-           
+
         }
 
 
@@ -40,10 +40,10 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-           
+
         }
 
- 
+
      .container2 {
 	    border: 3px solid #fff;
 	    padding: 40px;
@@ -66,50 +66,162 @@
 	    font-weight: 600;
 	    margin-bottom: 5px;
 	}
-	
+
 	.input-group{
 	    padding:7px;
 	}
-	
-	::-webkit-input-placeholder { 
+
+	::-webkit-input-placeholder {
            color:    red;
            font-size: 18px;
         }
-	
-	
+
+
 	.form-control{
 	   height:3em;
 	   font-size:17px;
 	}
-	
+
 	.form-check,p{
 	   font-size:17px;
 	}
-	
+
 	.alert{
 	   font-size:17px;
 	}
-	
+
 	.btn{
 	   font-size:18px;
 	}
-	
-	
-	
- </style>
- 
- 
- </head>
- 
-  
-  
-  
-  
-  
-  
-  
-  
 
+
+<style media="screen">
+  *,*:before,*:after{
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+  }
+  body{
+      background-color: #fff;
+      height:100vh;
+  }
+  .background{
+      width: 430px;
+      height: 520px;
+      margin-top:2em;
+      position: absolute;
+      transform: translate(-50%,-50%);
+      left: 50%;
+      top: 50%;
+  }
+  .background .shape{
+      height: 200px;
+      width: 200px;
+      position: absolute;
+      border-radius: 50%;
+  }
+  .shape:first-child{
+      background: linear-gradient(
+    #1845ad,
+    #23a2f6
+      );
+      left: -130px;
+      top: -120px;
+  }
+  .shape:last-child{
+      background: linear-gradient(
+    to right,
+    #ff512f,
+    #f09819
+      );
+      right: -130px;
+      bottom: -340px;
+  }
+  form{
+      height: 790px;
+      width: 500px;
+      margin-top:10em;
+      margin-bottom:10em;
+
+      background-color: rgba(255,255,255,0.13);
+      position: absolute;
+      transform: translate(-50%,-50%);
+      top: 50%;
+      left: 50%;
+      border-radius: 10px;
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(255,255,255,0.1);
+      box-shadow: 0 0 40px rgba(8,7,16,0.6);
+      padding: 50px 35px;
+  }
+  form *{
+      font-family: 'Poppins',sans-serif;
+      color: #ffffff;
+      letter-spacing: 0.5px;
+      outline: none;
+      border: none;
+  }
+  form h3{
+      font-size: 32px;
+      font-weight: 500;
+      line-height: 42px;
+      color:black;
+      text-align: center;
+  }
+
+  label{
+      display: block;
+      margin-top: 30px;
+      color:black;
+      font-size: 16px;
+      font-weight: 500;
+  }
+  input{
+      display: block;
+      height: 50px;
+      width: 100%;
+      border: 2px solid rgba(0, 0, 0, 0.3);
+      border-radius: 3px;
+      padding: 0 10px;
+      margin-top: 8px;
+      font-size: 14px;
+      font-weight: 300;
+  }
+  ::placeholder{
+      color: grey;
+  }
+
+  .btn{
+      width: 100%;
+      background-color: #393e46;
+      color: #fff;
+      padding: 15px 0;
+      font-size: 18px;
+      font-weight: 600;
+      border-radius: 5px;
+      cursor: pointer;
+  }
+
+  .loginbtn:hover{
+    background-color:blue;
+  }
+
+
+
+
+ </style>
+
+
+ </head>
+
+
+
+
+
+
+
+
+<!--
  <section class="vh-100">
   <div class="container-fluid h-custom">
     <div class="row d-flex justify-content-center align-items-center h-100">
@@ -119,7 +231,6 @@
       </div>
       <div class="container2 col-md-8 col-lg-6 col-xl-4 offset-xl-1">
             <form action="{{ url_for('register') }}" method="post" autocomplete="off" >
-              <!-- 2 column grid layout with text inputs for the first and last names -->
                 <h3 class="header">Register</h3>
                 <div class="form-group">
                   <div class="cols-sm-10">
@@ -128,7 +239,7 @@
                         </div>
                      </div>
                   </div>
-               
+
                 <div class="form-group">
                   <div class="cols-sm-10">
                     <div class="input-group">
@@ -136,8 +247,7 @@
                        </div>
                     </div>
                   </div>
-                
-              <!-- Email input -->
+
               <div class="form-group">
                 <div class="cols-sm-10">
                    <div class="input-group">
@@ -145,8 +255,7 @@
                        </div>
                    </div>
                 </div>
-        
-              <!-- Password input -->
+
               <div class="form-group">
                 <div class="cols-sm-10">
                   <div class="input-group">
@@ -154,14 +263,14 @@
                    </div>
                 </div>
               </div>
-  
+
              <div class="form-group ">
              {% with messages = get_flashed_messages()  %}
              {% if messages %}
              {% for message in messages %}
                 <div class="alert alert-success alert-dismissible">
-                  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> 
-                  <strong>{{ message }}</strong> 
+                  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                  <strong>{{ message }}</strong>
                </div>
              {% endfor %}
              {% endif %}
@@ -169,39 +278,86 @@
              <input type="submit" value="Register" class="form-control btn btn-primary " name="">
              <p style="padding:5px;">
              <a href="{{ url_for('login') }}" class="btn btn-dark ">Login</a></p>
-        
+
             </div>
            </form>
           </div>
         </div>
      </div>
 </section>
-<!-- Section: Design Block -->
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+
+
+
+-->
+
+
+<div class="background">
+       <div class="shape"></div>
+       <div class="shape"></div>
+   </div>
+   <form class="form-group" action="{{ url_for('register') }}" method="post" class="was-validated" on method="post">
+       <h3>Student Register</h3>
+
+       <label for="username">Name</label>
+       <div class="form-outline mb-4">
+           <input type="text" name="fullname" id="fullname"  placeholder="Enter your Name" minlength="3" maxlength="20" required class="form-control form-control-lg"/>
+           <div class="valid-feedback">Registration Number field is valid!</div>
+                  <div class="invalid-feedback">Registration Number field cannot be blank!</div>
+         </div>
+
+         <label for="username">Registration Number</label>
+         <div class="form-outline mb-4">
+             <input type="text" id="username" class="form-control form-control-lg" placeholder="Enter valid Registration Number" name="username" oninput="this.value = this.value.toUpperCase()" minlength="9" maxlength="9"  required />
+             <div class="valid-feedback">Registration Number field is valid!</div>
+                    <div class="invalid-feedback">Registration Number field cannot be blank!</div>
+           </div>
+
+           <label for="email">Email</label>
+           <div class="form-outline mb-4">
+               <input type="email" class="form-control" name="email" id="email"  placeholder="Enter your Email" class="form-control form-control-lg" placeholder="Enter Email" required />
+               <div class="valid-feedback">Registration Number field is valid!</div>
+                      <div class="invalid-feedback">Registration Number field cannot be blank!</div>
+             </div>
+
+             <label for="username">Password</label>
+             <div class="form-outline mb-3">
+                  <input type="password" class="form-control" name="password" placeholder="Password" id="password" required minlength="6" maxlength="12" placeholder="Enter your Password"  class="form-control form-control-lg"required/>
+                  <div class="valid-feedback">Password field is valid!</div>
+                         <div class="invalid-feedback">Password field cannot be blank!</div>
+                  </div>
+
+                  <div class="form-group ">
+                  {% with messages = get_flashed_messages()  %}
+                  {% if messages %}
+                  {% for message in messages %}
+                     <div class="alert alert-success alert-dismissible" style="background-color:green;">
+                       <a href="#" class="close" data-dismiss="alert" aria-label="close" style="color:white; height:20px; width:20px;">&times;</a>
+                       <strong >{{ message }}</strong>
+                    </div>
+                  {% endfor %}
+                  {% endif %}
+                  {% endwith %}
+                  <input type="submit" value="Register" class="form-control btn btn-primary " name="">
+
+                  <a href="{{ url_for('login') }}" class="loginbtn btn btn-dark " style="margin-top:1em;">Login</a>
+   </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>  
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
  </body>
 </html>
 {% endblock %}
-
-
