@@ -12,10 +12,12 @@ from common import cache
 import pyautogui as pag
 import smtplib
 import json
+import random
 
 
 
 app = Flask(__name__)
+
 
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
@@ -681,7 +683,7 @@ def view_jobs():
     cur.execute('SELECT regno FROM stats WHERE regno = %s',
                   (session['username'],))
     a=cur.fetchone()
-    
+
 
     if a is not None:
         return redirect(url_for('placed'))
