@@ -11,16 +11,16 @@
  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
- 
+
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
- 
- 
+
+
  <style>
- 
-    
-        
+
+
+
         .header{
             font-family: 'Poppins', sans-serif;
             font-weight: 400;
@@ -29,7 +29,7 @@
             align-items: center;
             text-align: center;
             padding:0 0 10px 0;
-           
+
         }
 
 
@@ -41,10 +41,10 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-           
+
         }
 
- 
+
      .container2 {
             float:left;
 	    border: 3px solid #fff;
@@ -58,7 +58,7 @@
 	    border-radius: 10px;
 	    text-align: left;
 	}
-	
+
 
 	.form-control h3 {
 	    color: #111;
@@ -67,27 +67,27 @@
 	    font-weight: 600;
 	    margin-bottom: 5px;
 	}
-	
-	::-webkit-input-placeholder { 
+
+	::-webkit-input-placeholder {
            color:    red;
            font-size: 18px;
         }
-	
-	
+
+
 	.form-control{
 	   height:3em;
 	   font-size:17px;
-	   
+
 	}
-	
+
 	.form-check{
 	  font-size:17px;
 	}
-	
+
 	.alert{
 	   font-size:17px;
 	}
-	
+
 <style media="screen">
 	*,*:before,*:after{
 	    padding: 0;
@@ -178,7 +178,7 @@
 	::placeholder{
 	    color: grey;
 	}
-	
+
 	.btn{
 	    width: 100%;
 	    background-color: #393e46;
@@ -189,14 +189,14 @@
 	    border-radius: 5px;
 	    cursor: pointer;
 	}
-	
+
  </style>
- 
+
  </head>
 
   <div class="login-box" >
-  
-<!-- 
+
+<!--
  <section class="vh-100">
   <div class="container-fluid h-custom">
     <div class="row d-flex justify-content-center align-items-center h-100">
@@ -220,7 +220,7 @@
             <div class="valid-feedback">Password field is valid!</div>
                    <div class="invalid-feedback">Password field cannot be blank!</div>
           </div>
-          
+
 
           <div class="d-flex justify-content-between align-items-center">
             <div class="form-check mb-0">
@@ -234,30 +234,30 @@
           <div class="text-center text-lg-start mt-4 pt-2">
             <input type="submit" class="btn btn-primary btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem;" value="Login" class="form-control btn btn-success " name="">
           </div>
-          
+
 
         </form>
-            
-            
+
+
        {% with messages = get_flashed_messages()  %}
           {% if messages %}
           {% for message in messages %}
            <div class="alert alert-success alert-dismissible">
-                  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> 
-                  <strong>{{ message }}</strong> 
+                  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                  <strong>{{ message }}</strong>
                </div>
          {% endfor %}
          {% endif %}
        {% endwith %}
-       
+
         </div>
-    
+
       </div>
     </div>
 </section>
 
 -->
- 
+
  <div class="background">
         <div class="shape"></div>
         <div class="shape"></div>
@@ -265,7 +265,7 @@
     <form class="form-group" action="{{ url_for('loginadmin') }}" method="post" class="was-validated" on method="post">
         <h3>Admin Login</h3>
 
-        <label for="username">Username</label>
+        <label for="username">Registration Number</label>
         <div class="form-outline mb-4">
             <input type="text" id="username" class="form-control form-control-lg"
               placeholder="Enter a valid Admin Registration Number" name="username" oninput="this.value = this.value.toUpperCase()" minlength="9" maxlength="9"  required />
@@ -291,23 +291,22 @@
           <div class="text-center text-lg-start mt-4 pt-2">
             <input type="submit" class="btn btn-primary" style="padding-left: 2.5rem; padding-right: 2.5rem;" value="Login" class="form-control btn btn-success " name="">
           </div>
-          
-          
+
+
           {% with messages = get_flashed_messages()  %}
           {% if messages %}
           {% for message in messages %}
            <div class="alert alert-success alert-dismissible" style="background:red; margin-top:15px;">
-                  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> 
-                  <strong style="color: white;">{{ message }}</strong> 
+                  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                  <strong style="color: white;">{{ message }}</strong>
                </div>
          {% endfor %}
          {% endif %}
-       {% endwith %}    
+       {% endwith %}
     </form>
-    
- 
+
+
  </body>
 </html>
 
 {% endblock %}
-

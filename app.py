@@ -64,6 +64,36 @@ def add_job():
         session['position'] = request.form['Position']
         eligibility = request.form.getlist('Eligibility')
         session['streligible']='#'.join(eligibility)
+        strelg='#'.join(eligibility)
+
+        finelf=""
+
+        for c in eligibility:
+            if c=="BTech-ME":
+                finelf+='#Bachelor of Technology, Mechanical Engineering'
+            elif c=="BTech-CE":
+                finelf+='#Bachelor of Technology, Chemical Engineering'
+            elif c=="BTech-CS":
+                finelf+='#Bachelor of Technology, Computer Science Engineering'
+            elif c=="BTech-EE":
+                finelf+='#Bachelor of Technology, Electrical Engineering'
+            elif c=="BTech-ECE":
+                finelf+='#Bachelor of Technology, Electronics and Communication Engineering'
+            elif c=="MCA":
+                finelf+='#Master in Computer Applications'
+            elif c=="MTech-ME":
+                finelf+='#Master of Technology, Mechanical Engineering'
+            elif c=="MTech-CE":
+                finelf+='#Master of Technology, Chemical Engineering'
+            elif c=="MTech-CSE":
+                finelf+='#Master of Technology, Computer Science Engineering'
+            elif c=="MTech-EE":
+                finelf+='#Master of Technology, Electrical Engineering'
+            elif c=="MTech-ECE":
+                finelf+='#Master of Technology, Electronics and Communication Engineering'
+
+        finelf=finelf.lstrip('#')
+
         session['cgpa'] = float(request.form['CGPA'])
         session['loc'] = request.form['Location']
         session['type'] = request.form['type']
@@ -73,7 +103,7 @@ def add_job():
         try:
             cur.execute('INSERT INTO job (job_id, company, position, eligibility, cgpa, loc, type)'
                         'VALUES (%s, %s, %s, %s, %s, %s, %s)',
-                        (session['job_id'], session['company'], session['position'], session['streligible'], session['cgpa'], session['loc'], session['type']))
+                        (session['job_id'], session['company'], session['position'], finelf, session['cgpa'], session['loc'], session['type']))
         except:
             flash("Job Id alreay exists")
             return redirect(url_for('add_job'))
@@ -562,6 +592,8 @@ def view():
     cur.execute('SELECT * from Student WHERE regNo= (%s)', (str(session['username']),))
     x=cur.fetchall()
 
+    #return x
+
     if len(x)==0:
         return redirect(url_for('create'))
 
@@ -927,17 +959,29 @@ def add_stats():
         session['job_id'] = request.form['job_Id']
         session['regno'] = request.form['regNo']
         cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-        cur.execute('SELECT regno FROM stats WHERE regno = %s',
+        cur.execute('SELECT regNo FROM Student WHERE regNo = %s',
                       (session['regno'],))
-        a=cur.fetchone()
-        if a:
-            flash("Student alreay exists")
+        ab=cur.fetchone()
+        cur.execute('SELECT job_Id FROM Job WHERE job_Id = %s',
+                      (session['job_id'],))
+        jb=cur.fetchone()
+        if jb:
+            if ab:
+                cur.execute('SELECT regno FROM stats WHERE regno = %s',
+                            (session['regno'],))
+                a=cur.fetchone()
+                if a:
+                    flash("Student already exists")
+                else:
+                    cur.execute('INSERT INTO stats (job_id, regno)'
+                                    'VALUES (%s, %s)',
+                                    (session['job_id'], session['regno']))
+                    conn.commit()
+                    flash("Student Added Successfully")
+            else:
+                flash("Student Doesn't Exist")
         else:
-            cur.execute('INSERT INTO stats (job_id, regno)'
-                            'VALUES (%s, %s)',
-                            (session['job_id'], session['regno']))
-            conn.commit()
-            flash("Student Added Successfully")
+                flash("Job Doesn't Exist")
     return redirect(url_for('viewstat'))
 
 
