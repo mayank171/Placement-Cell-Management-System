@@ -62,7 +62,7 @@ cur.execute('DROP TABLE IF EXISTS Job;')
 cur.execute('create table Job(job_Id varchar(50),'
                                 'company varchar(50),'
                                 'position varchar(40),'
-                                'eligibility varchar(200),'
+                                'eligibility varchar(1000),'
                                 'cgpa float,'
                                 'loc varchar(50),'
                                 'type varchar(20),'

@@ -85,7 +85,7 @@ def add_job():
                 finelf+='#Master of Technology, Mechanical Engineering'
             elif c=="MTech-CE":
                 finelf+='#Master of Technology, Chemical Engineering'
-            elif c=="MTech-CSE":
+            elif c=="MTech-CS":
                 finelf+='#Master of Technology, Computer Science Engineering'
             elif c=="MTech-EE":
                 finelf+='#Master of Technology, Electrical Engineering'
