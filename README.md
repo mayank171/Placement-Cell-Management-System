@@ -79,7 +79,6 @@ Now Open any browser and type the https link provided in the running server (htt
 ![](https://drive.google.com/uc?export=view&id=1t_2vrxQAMqZ_RyDZ7twa20QSVdKb2_fg)
 ![](https://drive.google.com/uc?export=view&id=1dFGMYY2LYGg3KLiWNRBw6DQsPDla8uGN)
 ![](https://drive.google.com/uc?export=view&id=1BWZKt85bO3BruQRuZ4jRgUc3ElJjGicQ)
-![](https://drive.google.com/uc?export=view&id=1t_2vrxQAMqZ_RyDZ7twa20QSVdKb2_fg)
 ![](https://drive.google.com/uc?export=view&id=1jj0OFFE3WoWm4ig4h5tb2NPP14Etln5o)
 ![](https://drive.google.com/uc?export=view&id=14E8b0Tz0GA5aTwjearsbCkSKQXA2EAD9)
 
