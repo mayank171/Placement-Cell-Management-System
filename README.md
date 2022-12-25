@@ -27,7 +27,7 @@ view the Statistics of Current Placement Drive.
 
 
 
-## Installation and Deployment
+## Installation and Project Startup Guide
 
 Please refer to these links and make sure you have Python, Flask and Postgres installed and working properly on your machine:
 
