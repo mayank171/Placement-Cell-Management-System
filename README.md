@@ -34,7 +34,8 @@ Please refer to these links and make sure you have Python, Flask and Postgres in
 * https://linuxize.com/post/how-to-install-flask-on-ubuntu-20-04/
 * https://www.digitalocean.com/community/tutorials/how-to-use-a-postgresql-database-in-a-flask-application
 
-Go to You Project Directory.
+Go to your Project Directory.
+
 To run this project type:
 
 ```bash
@@ -42,9 +43,6 @@ To run this project type:
 ```
 ```bash
   export FLASK_APP=app
-```
-```bash
-  source venv/bin/activate
 ```
 ```bash
   export FLASK_ENV=development
