@@ -1,6 +1,6 @@
 
 # Placement Cell Management System
-![David (path)](https://img.shields.io/github/package-json/v/plankanban/planka)  ![GitHub](https://img.shields.io/github/license/plankanban/planka)
+![David (path)](https://img.shields.io/github/package-json/v/plankanban/planka)  
 
 The Placement Cell Management System permits the Student to login/sign-up into the application and view current job
 opportunities available. The System would store all the academic as well as personal details of the
